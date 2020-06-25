@@ -7075,13 +7075,13 @@ nav.template-main-menu > ul > li:hover .template-mega-menu {
 .brand-box-layout1:hover .item-img img {
     filter: grayscale(100%);
 }
-.brand-box-layout2 {
+/* .brand-box-layout2 {
     text-align: center;
     background-color: #f8f8f8;
     border-radius: 4px;
     padding: 40px 10px;
     cursor: move;
-}
+} */
 .brand-box-layout2 .item-img img {
     display: inline-block;
     width: auto;

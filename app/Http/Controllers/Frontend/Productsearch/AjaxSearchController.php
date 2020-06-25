@@ -64,7 +64,7 @@ class AjaxSearchController extends Controller
                ->select('name', 'file', 'id')
                ->distinct('name')
                ->orderBy('id', 'desc')
-               ->paginate(2);
+               ->paginate(20);
         if (count($product) == 0) {
           $product = DB::table('product')
                ->join('category', 'product.category_id', '=', 'category.id')

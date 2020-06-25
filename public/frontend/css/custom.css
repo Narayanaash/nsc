@@ -568,3 +568,13 @@ nav ul .active a {
     animation-name: tick;
     animation-duration: 0.5s;
 }
+.address-c .owl-nav {
+    position: absolute;
+    top: 40px;
+    right: 45px;
+}
+.address-c .owl-nav button i {
+    background-color: #e6e6e6;
+    padding: 2px 6px !important;
+    margin: 0 5px !important;
+}
