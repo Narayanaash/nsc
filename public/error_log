@@ -1,0 +1,91 @@
+[28-Apr-2020 18:10:00 Asia/Kolkata] PHP Fatal error:  Uncaught ErrorException: Undefined variable: category_to_index_category in /home/ghywebinfo/public_html/nsc/storage/framework/views/d995220d37e0da8ad45e070ce8f972377edf8af2.php:39
+Stack trace:
+#0 /home/ghywebinfo/public_html/nsc/storage/framework/views/d995220d37e0da8ad45e070ce8f972377edf8af2.php(39): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Undefined varia...', '/home/ghywebinf...', 39, Array)
+#1 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(41): include('/home/ghywebinf...')
+#2 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(57): Illuminate\View\Engines\PhpEngine->evaluatePath('/home/ghywebinf...', Array)
+#3 /home/ghywebinfo/public_html/nsc/vendor/facade/ignition/src/Views/Engines/CompilerEngine.php(37): Illuminate\View\Engines\CompilerEngine->get('/home/ghywebinf...', Array)
+#4 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/View.php(139): Fac in /home/ghywebinfo/public_html/nsc/resources/views/errors/500.blade.php on line 39
+[28-Apr-2020 18:11:16 Asia/Kolkata] PHP Fatal error:  Uncaught ErrorException: Undefined variable: category_to_index_category in /home/ghywebinfo/public_html/nsc/storage/framework/views/d995220d37e0da8ad45e070ce8f972377edf8af2.php:39
+Stack trace:
+#0 /home/ghywebinfo/public_html/nsc/storage/framework/views/d995220d37e0da8ad45e070ce8f972377edf8af2.php(39): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Undefined varia...', '/home/ghywebinf...', 39, Array)
+#1 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(41): include('/home/ghywebinf...')
+#2 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(57): Illuminate\View\Engines\PhpEngine->evaluatePath('/home/ghywebinf...', Array)
+#3 /home/ghywebinfo/public_html/nsc/vendor/facade/ignition/src/Views/Engines/CompilerEngine.php(37): Illuminate\View\Engines\CompilerEngine->get('/home/ghywebinf...', Array)
+#4 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/View.php(139): Fac in /home/ghywebinfo/public_html/nsc/resources/views/errors/500.blade.php on line 39
+[28-Apr-2020 18:11:19 Asia/Kolkata] PHP Fatal error:  Uncaught ErrorException: Undefined variable: category_to_index_category in /home/ghywebinfo/public_html/nsc/storage/framework/views/d995220d37e0da8ad45e070ce8f972377edf8af2.php:39
+Stack trace:
+#0 /home/ghywebinfo/public_html/nsc/storage/framework/views/d995220d37e0da8ad45e070ce8f972377edf8af2.php(39): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Undefined varia...', '/home/ghywebinf...', 39, Array)
+#1 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(41): include('/home/ghywebinf...')
+#2 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(57): Illuminate\View\Engines\PhpEngine->evaluatePath('/home/ghywebinf...', Array)
+#3 /home/ghywebinfo/public_html/nsc/vendor/facade/ignition/src/Views/Engines/CompilerEngine.php(37): Illuminate\View\Engines\CompilerEngine->get('/home/ghywebinf...', Array)
+#4 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/View.php(139): Fac in /home/ghywebinfo/public_html/nsc/resources/views/errors/500.blade.php on line 39
+[28-Apr-2020 18:16:41 Asia/Kolkata] PHP Fatal error:  Uncaught ErrorException: Undefined variable: category_to_index_category in /home/ghywebinfo/public_html/nsc/storage/framework/views/d995220d37e0da8ad45e070ce8f972377edf8af2.php:39
+Stack trace:
+#0 /home/ghywebinfo/public_html/nsc/storage/framework/views/d995220d37e0da8ad45e070ce8f972377edf8af2.php(39): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Undefined varia...', '/home/ghywebinf...', 39, Array)
+#1 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(41): include('/home/ghywebinf...')
+#2 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(57): Illuminate\View\Engines\PhpEngine->evaluatePath('/home/ghywebinf...', Array)
+#3 /home/ghywebinfo/public_html/nsc/vendor/facade/ignition/src/Views/Engines/CompilerEngine.php(37): Illuminate\View\Engines\CompilerEngine->get('/home/ghywebinf...', Array)
+#4 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/View.php(139): Fac in /home/ghywebinfo/public_html/nsc/resources/views/errors/500.blade.php on line 39
+[28-Apr-2020 18:17:01 Asia/Kolkata] PHP Fatal error:  Uncaught ErrorException: Undefined variable: category_to_index_category in /home/ghywebinfo/public_html/nsc/storage/framework/views/d995220d37e0da8ad45e070ce8f972377edf8af2.php:39
+Stack trace:
+#0 /home/ghywebinfo/public_html/nsc/storage/framework/views/d995220d37e0da8ad45e070ce8f972377edf8af2.php(39): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Undefined varia...', '/home/ghywebinf...', 39, Array)
+#1 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(41): include('/home/ghywebinf...')
+#2 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(57): Illuminate\View\Engines\PhpEngine->evaluatePath('/home/ghywebinf...', Array)
+#3 /home/ghywebinfo/public_html/nsc/vendor/facade/ignition/src/Views/Engines/CompilerEngine.php(37): Illuminate\View\Engines\CompilerEngine->get('/home/ghywebinf...', Array)
+#4 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/View.php(139): Fac in /home/ghywebinfo/public_html/nsc/resources/views/errors/500.blade.php on line 39
+[28-Apr-2020 18:17:28 Asia/Kolkata] PHP Fatal error:  Uncaught ErrorException: Undefined variable: category_to_index_category in /home/ghywebinfo/public_html/nsc/storage/framework/views/d995220d37e0da8ad45e070ce8f972377edf8af2.php:39
+Stack trace:
+#0 /home/ghywebinfo/public_html/nsc/storage/framework/views/d995220d37e0da8ad45e070ce8f972377edf8af2.php(39): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Undefined varia...', '/home/ghywebinf...', 39, Array)
+#1 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(41): include('/home/ghywebinf...')
+#2 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(57): Illuminate\View\Engines\PhpEngine->evaluatePath('/home/ghywebinf...', Array)
+#3 /home/ghywebinfo/public_html/nsc/vendor/facade/ignition/src/Views/Engines/CompilerEngine.php(37): Illuminate\View\Engines\CompilerEngine->get('/home/ghywebinf...', Array)
+#4 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/View.php(139): Fac in /home/ghywebinfo/public_html/nsc/resources/views/errors/500.blade.php on line 39
+[28-Apr-2020 18:17:31 Asia/Kolkata] PHP Fatal error:  Uncaught ErrorException: Undefined variable: category_to_index_category in /home/ghywebinfo/public_html/nsc/storage/framework/views/d995220d37e0da8ad45e070ce8f972377edf8af2.php:39
+Stack trace:
+#0 /home/ghywebinfo/public_html/nsc/storage/framework/views/d995220d37e0da8ad45e070ce8f972377edf8af2.php(39): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Undefined varia...', '/home/ghywebinf...', 39, Array)
+#1 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(41): include('/home/ghywebinf...')
+#2 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(57): Illuminate\View\Engines\PhpEngine->evaluatePath('/home/ghywebinf...', Array)
+#3 /home/ghywebinfo/public_html/nsc/vendor/facade/ignition/src/Views/Engines/CompilerEngine.php(37): Illuminate\View\Engines\CompilerEngine->get('/home/ghywebinf...', Array)
+#4 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/View.php(139): Fac in /home/ghywebinfo/public_html/nsc/resources/views/errors/500.blade.php on line 39
+[28-Apr-2020 18:18:23 Asia/Kolkata] PHP Fatal error:  Uncaught ErrorException: Undefined variable: category_to_index_category in /home/ghywebinfo/public_html/nsc/storage/framework/views/d995220d37e0da8ad45e070ce8f972377edf8af2.php:39
+Stack trace:
+#0 /home/ghywebinfo/public_html/nsc/storage/framework/views/d995220d37e0da8ad45e070ce8f972377edf8af2.php(39): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Undefined varia...', '/home/ghywebinf...', 39, Array)
+#1 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(41): include('/home/ghywebinf...')
+#2 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(57): Illuminate\View\Engines\PhpEngine->evaluatePath('/home/ghywebinf...', Array)
+#3 /home/ghywebinfo/public_html/nsc/vendor/facade/ignition/src/Views/Engines/CompilerEngine.php(37): Illuminate\View\Engines\CompilerEngine->get('/home/ghywebinf...', Array)
+#4 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/View.php(139): Fac in /home/ghywebinfo/public_html/nsc/resources/views/errors/500.blade.php on line 39
+[28-Apr-2020 18:18:25 Asia/Kolkata] PHP Fatal error:  Uncaught ErrorException: Undefined variable: category_to_index_category in /home/ghywebinfo/public_html/nsc/storage/framework/views/d995220d37e0da8ad45e070ce8f972377edf8af2.php:39
+Stack trace:
+#0 /home/ghywebinfo/public_html/nsc/storage/framework/views/d995220d37e0da8ad45e070ce8f972377edf8af2.php(39): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Undefined varia...', '/home/ghywebinf...', 39, Array)
+#1 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(41): include('/home/ghywebinf...')
+#2 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(57): Illuminate\View\Engines\PhpEngine->evaluatePath('/home/ghywebinf...', Array)
+#3 /home/ghywebinfo/public_html/nsc/vendor/facade/ignition/src/Views/Engines/CompilerEngine.php(37): Illuminate\View\Engines\CompilerEngine->get('/home/ghywebinf...', Array)
+#4 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/View.php(139): Fac in /home/ghywebinfo/public_html/nsc/resources/views/errors/500.blade.php on line 39
+[28-Apr-2020 18:18:32 Asia/Kolkata] PHP Fatal error:  Uncaught ErrorException: Undefined variable: category_to_index_category in /home/ghywebinfo/public_html/nsc/storage/framework/views/d995220d37e0da8ad45e070ce8f972377edf8af2.php:39
+Stack trace:
+#0 /home/ghywebinfo/public_html/nsc/storage/framework/views/d995220d37e0da8ad45e070ce8f972377edf8af2.php(39): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Undefined varia...', '/home/ghywebinf...', 39, Array)
+#1 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(41): include('/home/ghywebinf...')
+#2 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(57): Illuminate\View\Engines\PhpEngine->evaluatePath('/home/ghywebinf...', Array)
+#3 /home/ghywebinfo/public_html/nsc/vendor/facade/ignition/src/Views/Engines/CompilerEngine.php(37): Illuminate\View\Engines\CompilerEngine->get('/home/ghywebinf...', Array)
+#4 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/View.php(139): Fac in /home/ghywebinfo/public_html/nsc/resources/views/errors/500.blade.php on line 39
+[28-Apr-2020 18:19:14 Asia/Kolkata] PHP Fatal error:  Uncaught ErrorException: Undefined variable: category_to_index_category in /home/ghywebinfo/public_html/nsc/storage/framework/views/d995220d37e0da8ad45e070ce8f972377edf8af2.php:39
+Stack trace:
+#0 /home/ghywebinfo/public_html/nsc/storage/framework/views/d995220d37e0da8ad45e070ce8f972377edf8af2.php(39): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Undefined varia...', '/home/ghywebinf...', 39, Array)
+#1 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(41): include('/home/ghywebinf...')
+#2 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(57): Illuminate\View\Engines\PhpEngine->evaluatePath('/home/ghywebinf...', Array)
+#3 /home/ghywebinfo/public_html/nsc/vendor/facade/ignition/src/Views/Engines/CompilerEngine.php(37): Illuminate\View\Engines\CompilerEngine->get('/home/ghywebinf...', Array)
+#4 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/View.php(139): Fac in /home/ghywebinfo/public_html/nsc/resources/views/errors/500.blade.php on line 39
+[28-Apr-2020 18:20:24 Asia/Kolkata] PHP Fatal error:  Uncaught ErrorException: Undefined variable: category_to_index_category in /home/ghywebinfo/public_html/nsc/storage/framework/views/d995220d37e0da8ad45e070ce8f972377edf8af2.php:39
+Stack trace:
+#0 /home/ghywebinfo/public_html/nsc/storage/framework/views/d995220d37e0da8ad45e070ce8f972377edf8af2.php(39): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Undefined varia...', '/home/ghywebinf...', 39, Array)
+#1 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(41): include('/home/ghywebinf...')
+#2 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(57): Illuminate\View\Engines\PhpEngine->evaluatePath('/home/ghywebinf...', Array)
+#3 /home/ghywebinfo/public_html/nsc/vendor/facade/ignition/src/Views/Engines/CompilerEngine.php(37): Illuminate\View\Engines\CompilerEngine->get('/home/ghywebinf...', Array)
+#4 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/View.php(139): Fac in /home/ghywebinfo/public_html/nsc/resources/views/errors/500.blade.php on line 39
+[28-Apr-2020 18:20:52 Asia/Kolkata] PHP Fatal error:  Uncaught ErrorException: Undefined variable: category_to_index_category in /home/ghywebinfo/public_html/nsc/storage/framework/views/d995220d37e0da8ad45e070ce8f972377edf8af2.php:39
+Stack trace:
+#0 /home/ghywebinfo/public_html/nsc/storage/framework/views/d995220d37e0da8ad45e070ce8f972377edf8af2.php(39): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Undefined varia...', '/home/ghywebinf...', 39, Array)
+#1 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(41): include('/home/ghywebinf...')
+#2 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(57): Illuminate\View\Engines\PhpEngine->evaluatePath('/home/ghywebinf...', Array)
+#3 /home/ghywebinfo/public_html/nsc/vendor/facade/ignition/src/Views/Engines/CompilerEngine.php(37): Illuminate\View\Engines\CompilerEngine->get('/home/ghywebinf...', Array)
+#4 /home/ghywebinfo/public_html/nsc/vendor/laravel/framework/src/Illuminate/View/View.php(139): Fac in /home/ghywebinfo/public_html/nsc/resources/views/errors/500.blade.php on line 39

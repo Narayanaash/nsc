@@ -1,0 +1,271 @@
+@media only screen and (max-width: 768px) {
+    .home-left-sidebar {
+        display: none !important;
+    }
+    .brand-wrap-layout1 {
+        display: block !important;
+    }
+    .hide-on-phone {
+        display: none !important;
+    }
+    .brand-wrap-layout1 {
+        padding-top: 0 !important;
+    }
+    .logo-area img {
+        display: none !important;
+    }
+    #header-topbar {
+        display: none !important;
+    }
+    nav ul .active a {
+        color: #ffeb00 !important;
+    }
+    .mean-container #wrapper {
+        padding-top: 38px !important;
+    }
+    .browse-category-home {
+        margin-top: 15px !important;
+    }
+    .cart-btn {
+        border: 2px solid #2287e0;
+    }
+}
+@media only screen and (min-width: 426px) and (max-width: 768px) {
+    #header-menu {
+        top: 14px !important;
+    }
+}
+@media only screen and (min-width: 320px) and (max-width: 425px) {
+    .mean-container .mean-bar .mobile-menu-nav-back {
+        padding-top: 2px;
+    }
+    .promotion-img {
+        width: 25% !important;
+    }
+    .padding-left-15 {
+        padding-left: 0 !important;
+    }
+    .home .item-img2 img {
+        height: 165px !important;
+    }
+    nav ul .active a {
+        border-top: 0 !important;
+    }
+    .slider-area {
+        margin-top: 62px;
+    }
+    .header-search .header-search-form {
+        width: 92%;
+    }
+    .product-label {
+        width: 35%;
+        padding-right: 0;
+    }
+    .product-name {
+        width: 65%;
+        padding-left: 0;
+    }
+    .row {
+        padding: 0 !important;
+    }
+    .width-50,
+    .p-search-width-50 {
+        width: 50% !important;
+    }
+    .p-search-width-50:nth-child(even) {
+        padding-right: 7px;
+    }
+    .p-search-width-50:nth-child(odd) {
+        padding-left: 7px;
+    }
+    ._5-column-fix .width-50:nth-child(odd) {
+        padding-right: 7px;
+    }
+    .about-div {
+        margin-top: 90px;
+        margin-bottom: 0 !important;
+    }
+    ._5-column-fix .width-50:nth-child(even) {
+        padding-left: 7px;
+    }
+    .service-box-layout1 {
+        margin-bottom: 15px !important;
+    }
+    .custom-search-result {
+        width: 80% !important;
+    }
+    .header-action-layout1 {
+        width: 100%;
+    }
+    .service-wrap-layout1 {
+        padding-top: 30px;
+    }
+    .slider-area {
+        margin-bottom: 0;
+    }
+    .action-wrap-layout1 {
+        padding: 10px;
+    }
+    .about-wrap-layout6 {
+        padding: 30px 0 15px;
+    }
+    .inner-page-padding {
+        padding: 20px 0;
+    }
+    .sidebar-widget-area {
+        display: none;
+    }
+    .checkout-image img {
+        height: 40vh !important;
+        width: auto;
+    }
+    .buy-now-title {
+        font-size: 22px !important;
+    }
+    #pagination-nav nav {
+        margin-top: 10px !important;
+    }
+    .browse-category-home div h2 {
+        font-size: 20px !important;
+        padding: 1px 14px !important;
+    }
+    .browse-category-home {
+        margin-top: 15px !important;
+    }
+    .service-wrap-layout1 {
+        background-color: #ffffff !important;
+    }
+    .service-wrap-layout1 {
+        padding: 0 15px !important;
+    }
+    .brand-wrap-layout1 {
+        padding-top: 0 !important;
+        padding-bottom: 15px;
+    }
+    .logo-mobile {
+        background: url(../../frontend/img/nsc_logo_mobile.png) !important;
+        width: auto !important;
+        height: 50px !important;
+        background-repeat: no-repeat !important;
+    }
+    header.header {
+        display: block !important;
+        position: fixed !important;
+        z-index: 9999 !important;
+        top: 0px !important;
+    }
+    #header-topbar {
+        display: none !important;
+    }
+    .header-menu.menu-layout1 {
+        box-shadow: unset !important;
+        background-color: #fff;
+        padding: 10px 0 !important;
+    }
+    .logo-area {
+        display: none !important;
+    }
+    .header-action-layout1 ul .header-btn .item-btn {
+        padding: 7px 7px 8px 0 !important;
+        font-size: 12px !important;
+    }
+    .custom-header-search input {
+        padding: 8px 15px !important;
+        width: 272px !important;
+    }
+    .mean-container .mean-bar {
+        top: 56px !important;
+    }
+    #dynamic-result .col-md-3 {
+        width: 28% !important;
+    }
+    #dynamic-result .col-md-9 {
+        width: 72% !important;
+    }
+    ._404-img,
+    ._500-img {
+        width: 95% !important;
+        height: auto !important;
+        margin: auto !important;
+    }
+    .custom-search-result .container {
+        padding: 15px !important;
+    }
+    .call-mobile {
+        background-color: #ffffff !important;
+        display: none;
+    }
+    .m-m-b-20 {
+        margin-bottom: 20px !important;
+    }
+    .m-m-b-10 {
+        margin-bottom: 10px !important;
+    }
+    .m-m-b-40 {
+        margin-bottom: 40px !important;
+    }
+    .service-box p {
+        padding: 16px 5px !important;
+    }
+    .contact-page-box-layout1 .contact-location .location-address {
+        margin-bottom: 20px;
+        border: 1px dashed #cecece;
+        padding: 5px 0;
+    }
+    .contact-page-box-layout1 .contact-location .location-address:last-child {
+        margin-bottom: 40px;
+    }
+    .contact-page-box-layout1 iframe {
+        height: 300px !important;
+    }
+    .inner-page-banner {
+        margin-top: 55px;
+        padding-bottom: 0;
+    }
+}
+@media only screen and (max-width: 419px) {
+    .custom-header-search input {
+        width: 245px !important;
+    }
+    .header-action-layout1 ul li:first-child {
+        margin-right: 15px !important;
+    }
+    .header-btn {
+        margin-right: 0 !important;
+        margin-left: auto;
+    }
+}
+@media only screen and (max-width: 375px) {
+    .custom-header-search input {
+        width: 235px !important;
+    }
+}
+@media only screen and (min-width: 426px) {
+    .mean-container .mean-bar {
+        top: 0 !important;
+    }
+}
+header.header {
+    display: block !important;
+}
+@media only screen and (min-width: 321px) and (max-width: 382px) {
+    .custom-header-search input {
+        width: 220px !important;
+    }
+}
+@media only screen and (max-width: 360px) {
+    .custom-header-search input {
+        width: 185px !important;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .custom-header-search input {
+        width: 182px !important;
+    }
+}
+@media only screen and (max-width: 227px) {
+    .custom-header-search input {
+        width: 170px !important;
+    }
+}
