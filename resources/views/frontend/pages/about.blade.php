@@ -7,7 +7,7 @@
         <div class="container">
             <div class="browse-category-home browse-category-about">
                 <div class="heading-layout1 about-div" style="margin-bottom: 20px;">
-                    <h2 class="item-title" id="service">ABOUT US</h2>
+                    <h2 class="item-title" id="service">ABOUT US</h2> 
                 </div>
             </div>
         </div>
