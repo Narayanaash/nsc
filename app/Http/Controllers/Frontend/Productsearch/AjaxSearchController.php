@@ -22,7 +22,7 @@ class AjaxSearchController extends Controller
                ->select('name', 'file', 'id')
                ->distinct('name')
                ->orderBy('id', 'desc')
-               ->take(20)
+               ->take(15)
                ->get();
         if (count($product) == 0) {
           $product = DB::table('product')
@@ -36,7 +36,7 @@ class AjaxSearchController extends Controller
                ->select('product.name', 'product.file', 'product.id')
                ->distinct('product.name')
                ->orderBy('id', 'desc')
-               ->take(20)
+               ->take(15)
                ->get();
         }
         

@@ -5,7 +5,7 @@
 <!-- CSRF Token -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>{{ isset($url) ? ucwords($url) : "Admin"}} Login | NSC Stationery</title>
+  <title>Admin-Login | NSC Stationery</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -29,11 +29,8 @@
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
-      @isset($url)
-      <form method="POST" action='{{ url("login/$url") }}' aria-label="{{ __('Login') }}">
-      @else
+
       <form action="{{route('login')}}" method="post">
-      @endisset
         @csrf
         <div class="input-group mb-3">
           <input type="text" name="username" class="form-control" {{old('username')}} placeholder="Username" required="">
