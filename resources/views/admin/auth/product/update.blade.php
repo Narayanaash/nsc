@@ -54,7 +54,7 @@
                       @enderror
                     </div>
                   </div>
-                  <!--<div class="col-md-4">-->
+                  {{-- <!--<div class="col-md-4">-->
                   <!--  <div class="form-group">-->
                   <!--    <label for="price">Product Price</label>-->
                   <!--    <input  type="number" class="form-control" placeholder="Enter product price" name="price" value="{{old('price') ?? $product[0]->price}}" id="code" required="">-->
@@ -64,7 +64,7 @@
                   <!--      </span>-->
                   <!--    @enderror-->
                   <!--  </div>-->
-                  <!--</div>-->
+                  <!--</div>--> --}}
                   <div class="col-md-8">
                     <div class="form-group">
                       <label for="name">Product Name</label>

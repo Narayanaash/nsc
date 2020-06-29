@@ -25,7 +25,13 @@ Route::get('/register', function () {
     return view('frontend.pages.index');
 });
 
+Route::middleware(['auth'])->group(function () {
+
 Route::get('/admin/home', 'HomeController@index')->name('home');
+
+Route::get('/admin/home/product-order-detail', function() {
+    return view('admin.auth.product.productdetail');
+});
 
 Route::namespace('Auth')->group(function () {
 
@@ -69,3 +75,4 @@ Route::namespace('Auth')->group(function () {
             Route::post('/admin/home/queries/get-data', 'QueryController@get')->name('queries.get_data');
         });
     });
+});
