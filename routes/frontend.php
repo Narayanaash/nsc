@@ -13,6 +13,23 @@ Route::get('/hash/{password}', function($password) {
     $password = Hash::make($password);
     return $password;
 });
+
+
+// Member Login Control
+Route::get('/customer/login', 'Customer\CustomerLoginController@showCustomerLoginForm')->name('customer.login');
+Route::post('/customer/login', 'Customer\CustomerLoginController@CustomerLogin')->name('login.customer');
+Route::post('/customer/logout', 'Customer\CustomerLoginController@logout')->name('customer.logout');
+// Customer Reguster
+Route::post('/add/customer', 'Customer\RegistrationController@addCustomer')->name('add.customer');
+// Add To Cart
+Route::get('/add/to/cart/{id}', 'Customer\ProductController@getAddToCart')->name('product.add_to_cart');
+Route::get('/delete/{id}', 'Customer\ProductController@deleteCart')->name('product.delete');
+Route::group(['middleware'=>'auth:customer','prefix'=>'customer','namespace'=>'Customer'],function(){
+    Route::get('/home', 'HomeController@index')->name('frontend.home');
+    Route::get('/checkout', 'ProductController@getCheckout')->name('product.checkout');
+    Route::post('/add/address', 'ProductController@addAddress')->name('customer.address');
+    Route::get('/delete/{id}', 'ProductController@deleteCart')->name('product.delete');
+});
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,9 +53,7 @@ Route::get('/contact', function () {
     return view('frontend.pages.contact');
 })->name('contact');
 
-Route::get('/shopping-cart', function () {
-    return view('frontend.pages.cart');
-})->name('frontend.cart');
+Route::get('/shopping-cart', 'Customer\ProductController@getCart')->name('frontend.cart');
 
 Route::get('/user-login', function () {
     return view('frontend.pages.login');
@@ -56,9 +71,9 @@ Route::get('/user-orders', function () {
     return view('frontend.pages.orders');
 })->name('frontend.orders');
 
-Route::get('/checkout-address', function () {
-    return view('frontend.pages.selectaddress');
-})->name('frontend.checkout.address');
+// Route::get('/checkout-address', function () {
+//     return view('frontend.pages.selectaddress');
+// })->name('frontend.checkout.address');
 
 Route::get('/thank-you', function () {
     return view('frontend.pages.thankyou');

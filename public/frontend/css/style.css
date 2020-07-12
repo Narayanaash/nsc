@@ -12383,3 +12383,6 @@ nav.template-main-menu > ul > li:hover .template-mega-menu {
 .letter-specing-0 {
     letter-spacing: 0;
 }
+.invalid-feedback{
+    display: block !important;
+}

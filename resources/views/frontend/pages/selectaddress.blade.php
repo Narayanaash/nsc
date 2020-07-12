@@ -26,7 +26,7 @@
                                 </div>
                                 <div class="list-item">
                                     <ul>
-                                        <li>Name :<span>Narayan</span></li>
+                                        <li>Name :<span>SAdd</span></li>
                                         <li>Email :<span>email@gmail.com</span></li>
                                         <li>phone :<span>9854098540</span></li>
                                         <li>Street Address :<span>xyz</span></li>
@@ -91,7 +91,7 @@
                 <div class="schedule-box-layout2">
                     <h3 class="schedule-form-title">Add New Address</h3>
                     <div class="schedule-form">
-                        <form class="contact-form-box" id="contact-form">
+                        <form method="post" class="contact-form-box" id="contact_form">
                             <div class="row gutters-10">
                                 <div class="col-12 form-group">
                                     <input type="text" placeholder="Full Name *" class="form-control" name="name" data-error="zip code field is required" required>
@@ -123,7 +123,7 @@
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="col-12 form-group text-center">
-                                    <button type="submit" class="item-btn">Submit Now<i class="fas fa-long-arrow-alt-right"></i></button>
+                                    <button type="submit" class="item-btn" id="submit">Submit Now<i class="fas fa-long-arrow-alt-right"></i></button>
                                 </div>
                             </div>
                             <div class="form-response"></div>
@@ -134,4 +134,39 @@
         </div>
         <!-- Search Box End Here -->
         <!-- Checkout Area End Here -->
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function(){
+            $('#submit').on('click', function(e){
+                e.preventDefault();
+                $.ajaxSetup({
+	                headers: {
+	                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	                }
+                });
+                $.ajax({
+                    url: "{{route('customer.address')}}",
+                    method: "POST",
+                    data: {formData: $('#contact_form').serialize()},
+                    success: function(data){
+                        // if(data == 5){
+                        //     $('#member_data').html("<font color='red'>All lags are full! Try with another Sponsor ID</font>").fadeIn( "slow" );
+                        //     $('#sponsorVal').val(data);
+                        //     $("#loading-image").hide();
+                        // }else if(data == 1){
+                        //     $('#member_data').html("<font color='red'>Invalid Sponsor ID!</font>").fadeIn( "slow" );
+                        //     $("#loading-image").hide();
+                        //     $('#sponsorVal').val(data);
+                        // }else{
+                        //     $('#member_data').html(data);
+                        //     $('#sponsorVal').val("200");
+                        //     $("#loading-image").hide();
+                        // }
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
