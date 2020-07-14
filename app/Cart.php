@@ -1,9 +1,11 @@
 <?php
 
 namespace App;
+use Illuminate\Database\Eloquent\Model;
 
-class Cart
+class Cart extends Model
 {
+    protected $table = "order_carts";
     public $items = null;
     public $totalQty = 0;
 
@@ -24,5 +26,10 @@ class Cart
         $storedItem['qty']++;
         $this->items[$id] = $storedItem;
         $this->totalQty++;
+    }
+    
+    public function removeItem($id){
+        $this->totalQty--;
+        unset($this->items[$id]);
     }
 }

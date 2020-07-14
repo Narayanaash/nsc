@@ -60,7 +60,7 @@
                                         </div>
                                     </div>
                                     <div class="delete-btn">
-                                        <a href="{{route('product.delete', ['id' => encrypt($product['items']['id'])])}}"><i class="fas fa-trash-alt"></i></a>
+                                        <a href="{{route('product.remove', ['id' => $product['items']['id']])}}"><i class="fas fa-trash-alt"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -79,9 +79,11 @@
                             <a href="./" class="fw-btn-fill bg-accent text-textprimary letter-specing-0"><i class="fas fa-long-arrow-alt-left pr-3"></i>Continue Shopping</a>
                         </div>
                         <div class="col-lg-6"></div>
+                        @if(Session::has('cart'))
                         <div class="col-lg-3  pt-4 pb-5">
-                        <a href="{{route('product.checkout')}}" class="fw-btn-fill bg-accent text-textprimary letter-specing-0">Proceed To Checkout<i class="fas fa-long-arrow-alt-right"></i></a>
+                            <a href="{{route('product.checkout')}}" class="fw-btn-fill bg-accent text-textprimary letter-specing-0">Proceed To Checkout<i class="fas fa-long-arrow-alt-right"></i></a>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>

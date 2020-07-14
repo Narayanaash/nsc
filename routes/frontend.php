@@ -23,12 +23,15 @@ Route::post('/customer/logout', 'Customer\CustomerLoginController@logout')->name
 Route::post('/add/customer', 'Customer\RegistrationController@addCustomer')->name('add.customer');
 // Add To Cart
 Route::get('/add/to/cart/{id}', 'Customer\ProductController@getAddToCart')->name('product.add_to_cart');
-Route::get('/delete/{id}', 'Customer\ProductController@deleteCart')->name('product.delete');
+Route::get('/remove/{id}', 'Customer\ProductController@getRemoveItem')->name('product.remove');
+Route::get('/shopping-cart', 'Customer\ProductController@cart')->name('frontend.cart');
+
 Route::group(['middleware'=>'auth:customer','prefix'=>'customer','namespace'=>'Customer'],function(){
     Route::get('/home', 'HomeController@index')->name('frontend.home');
     Route::get('/checkout', 'ProductController@getCheckout')->name('product.checkout');
     Route::post('/add/address', 'ProductController@addAddress')->name('customer.address');
-    Route::get('/delete/{id}', 'ProductController@deleteCart')->name('product.delete');
+    Route::post('/add/order', 'ProductController@addOrder')->name('customer.order');
+    
 });
 /*
 |--------------------------------------------------------------------------
@@ -71,9 +74,6 @@ Route::get('/user-orders', function () {
     return view('frontend.pages.orders');
 })->name('frontend.orders');
 
-// Route::get('/checkout-address', function () {
-//     return view('frontend.pages.selectaddress');
-// })->name('frontend.checkout.address');
 
 Route::get('/thank-you', function () {
     return view('frontend.pages.thankyou');

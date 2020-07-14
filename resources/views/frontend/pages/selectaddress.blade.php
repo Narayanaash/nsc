@@ -7,6 +7,7 @@
         <!-- Checkout Area Start Here -->
         <section class="inner-page-padding pt-5 mt-5">
             <div class="container">
+                {{ Form::open(array('route' => 'customer.order', 'method' => 'post', 'class' => 'student')) }}
                 <div class="row">
                 <div class="col-md-4">
                 <div class="rc-carousel address-c" data-loop="false" data-items="3" data-margin="30"
@@ -18,28 +19,39 @@
                 data-r-medium-dots="true" data-r-large="1" data-r-large-nav="true"
                 data-r-large-dots="true" data-r-extra-large="1" data-r-extra-large-nav="true"
                 data-r-extra-large-dots="true">
+                @if(isset($address) && !empty($address))
+                    @foreach($address as $addr)
                     <div class="brand-box-layout2">
                         <div class="item-img text-left">
                             <div class="widget widget-product-calculate">
                                 <div class="heading-layout3">
-                                    <h3 class="item-title">Address<input type="radio" name="address" class="ml-3"></h3>
+                                    <h3 class="item-title">Address<input type="radio" name="address_select" class="ml-3"></h3>
                                 </div>
                                 <div class="list-item">
                                     <ul>
-                                        <li>Name :<span>SAdd</span></li>
-                                        <li>Email :<span>email@gmail.com</span></li>
-                                        <li>phone :<span>9854098540</span></li>
-                                        <li>Street Address :<span>xyz</span></li>
-                                        <li>City :<span>Guwahati</span></li>
-                                        <li>Zip: <span>781029</span></li>
-                                        <li>Landmark: <span>abvffffc</span></li>
+                                        <li>Name :<span>{{$addr->name}}</span></li>
+                                        <li>Email :<span>{{$addr->email}}</span></li>
+                                        <li>phone :<span>{{$addr->phone}}</span></li>
+                                        <li>Street Address :<span>{{$addr->address}}</span></li>
+                                        <li>City :<span>{{$addr->city}}</span></li>
+                                        <li>Zip: <span>{{$addr->zip}}</span></li>
+                                        <li>Landmark: <span>{{$addr->landmark}}</span></li>
                                     </ul>
+                                    <input type="hidden" name="name" value="{{ $addr->name }}">
+                                    <input type="hidden" name="email" value="{{ $addr->email }}">
+                                    <input type="hidden" name="phone" value="{{ $addr->phone }}">
+                                    <input type="hidden" name="address" value="{{ $addr->address }}">
+                                    <input type="hidden" name="city" value="{{ $addr->city }}">
+                                    <input type="hidden" name="zip" value="{{ $addr->zip }}">
+                                    <input type="hidden" name="landmark" value="{{ $addr->landmark }}">
                                 </div>
                             <a href="#header-search" class="fw-btn-fill btn-success text-textprimary letter-specing-0">Add new address?<i class="fas fa-long-arrow-alt-right"></i></a>
                             </div>
                         </div>
                     </div>
-                    <div class="brand-box-layout2">
+                    @endforeach
+                @endif
+                    {{-- <div class="brand-box-layout2">
                         <div class="item-img text-left">
                             <div class="widget widget-product-calculate">
                                 <div class="heading-layout3">
@@ -59,7 +71,7 @@
                             <a href="#header-search" class="fw-btn-fill btn-success text-textprimary letter-specing-0">Add new address?<i class="fas fa-long-arrow-alt-right"></i></a>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 </div>
                    <div class="col-lg-4 sidebar-break-md sidebar-widget-area">
@@ -67,58 +79,82 @@
                         <div class="heading-layout3">
                             <h3 class="item-title">Calculating</h3>
                         </div>
+                        @if(Session::has('cart'))
                         <div class="list-item">
                             <ul>
-                                <li>4 items :<span>$60.80</span></li>
-                                <li class="mb-0">Shipping :<span>$00.00</span></li>
-                                <li class="pb-0">Shipping :
-                                    <span><input type="text" placeholder="Enter Your Code" class="form-control" name="name"></span>
-                                </li>
-                                <li>Tax :<span>$00.00</span></li>
-                                <li>Total Cost :<span>$60.00</span></li>
+                                <div class="item-img">
+                                    <table class="table">
+                                        <tr>
+                                            <th>Item Code</th>
+                                            <th>Item</th>
+                                            <th>Qty</th>
+                                        </tr>
+                                        <tr>
+                                            
+                                            @foreach($products as $product)
+                                            <td>
+                                                {{$product['items']['product_code']}}
+                                                <input type="hidden" name="item_code" value="{{ $product['items']['product_code']}}">
+                                                <input type="hidden" name="item_name" value="{{ $product['items']['name'] }}">
+                                                <input type="hidden" name="item_qty" value="{{ $product['qty'] }}">
+                                                <input type="hidden" name="item_category" value="{{ $product['items']['category_id'] }}">
+                                            </td>
+                                            <td>
+                                                <img width="80" src="{{asset('assets/product/checkout/'.$product['items']['file'])}}" alt="Thumbnail" class="media-img-auto">
+                                            </td>
+                                            <td>
+                                                {{$product['qty']}}
+                                            </td>
+                                            @endforeach
+                                        </tr>
+                                    </table>
+                                   
+                                </div>
                             </ul>
                         </div>
-                        <a href="{{route('frontend.checkout.thankyou')}}" class="fw-btn-fill bg-accent text-textprimary letter-specing-0">Proceed To Checkout<i class="fas fa-long-arrow-alt-right"></i></a>
+                        @endif
+                        <button type="submit" class="fw-btn-fill bg-accent text-textprimary letter-specing-0">Proceed To Checkout<i class="fas fa-long-arrow-alt-right"></i></button>
                     </div>
                </div>
-                </div>
+            </div>
+        </form>
             </div>
         </section>
         <!-- Search Box Start Here -->
         <div id="header-search" class="header-search">
-            <button type="button" class="close">×</button>
+            <button type="button" class="close" id="close">×</button>
             <div class="col-lg-4 offset-4">
                 <div class="schedule-box-layout2">
                     <h3 class="schedule-form-title">Add New Address</h3>
                     <div class="schedule-form">
-                        <form method="post" class="contact-form-box" id="contact_form">
+                        <form action="" class="contact-form-box" id="contact_form">
                             <div class="row gutters-10">
                                 <div class="col-12 form-group">
-                                    <input type="text" placeholder="Full Name *" class="form-control" name="name" data-error="zip code field is required" required>
+                                    <input type="text" placeholder="Full Name *" class="form-control" name="name" id="name" data-error="zip code field is required" required>
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="col-12 form-group">
-                                    <input type="email" placeholder="E-mail *" class="form-control" name="email" data-error="email field is required" required>
+                                    <input type="email" placeholder="E-mail *" class="form-control" name="email" id="email" data-error="email field is required" required>
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="col-12 form-group">
-                                    <input type="text" placeholder="Phone *" class="form-control" name="phone" data-error="Phone field is required" required>
+                                    <input type="text" placeholder="Phone *" class="form-control" name="phone" id="phone" data-error="Phone field is required" required>
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="col-12 form-group">
-                                    <input type="text" placeholder="Street Address *" class="form-control" name="address" data-error="Street field is required" required>
+                                    <input type="text" placeholder="Street Address *" class="form-control" name="address" id="address" data-error="Street field is required" required>
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="col-md-6 col-12 form-group">
-                                    <input type="text" placeholder="City *" class="form-control" name="city" data-error="City field is required" required>
+                                    <input type="text" placeholder="City *" class="form-control" name="city" id="city" data-error="City field is required" required>
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="col-md-6 col-12 form-group">
-                                    <input type="text" placeholder="Zip *" class="form-control" name="zip" data-error="Zip field is required" required>
+                                    <input type="text" placeholder="Zip *" class="form-control" name="zip" id="zip" data-error="Zip field is required" required>
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="col-12 form-group mg-b-20">
-                                    <textarea placeholder="Any landmark" class="textarea form-control" name="landmark" id="form-message" rows="4" cols="20" 
+                                    <textarea placeholder="Any landmark" class="textarea form-control" name="landmark" id="landmark" id="form-message" rows="4" cols="20" 
                                     data-error="Message field is required" required></textarea>
                                     <div class="help-block with-errors"></div>
                                 </div>
@@ -146,24 +182,24 @@
 	                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 	                }
                 });
+                var name = $('#name').val();
+                var email = $('#email').val();
+                var phone = $('#phone').val();
+                var address = $('#address').val();
+                var city = $('#city').val();
+                var zip = $('#zip').val();
+                var landmark = $('#landmark').val();
                 $.ajax({
                     url: "{{route('customer.address')}}",
                     method: "POST",
-                    data: {formData: $('#contact_form').serialize()},
+                    data: {name: name, email: email, phone: phone, address: address, city: city, zip: zip, landmark: landmark},
                     success: function(data){
-                        // if(data == 5){
-                        //     $('#member_data').html("<font color='red'>All lags are full! Try with another Sponsor ID</font>").fadeIn( "slow" );
-                        //     $('#sponsorVal').val(data);
-                        //     $("#loading-image").hide();
-                        // }else if(data == 1){
-                        //     $('#member_data').html("<font color='red'>Invalid Sponsor ID!</font>").fadeIn( "slow" );
-                        //     $("#loading-image").hide();
-                        //     $('#sponsorVal').val(data);
-                        // }else{
-                        //     $('#member_data').html(data);
-                        //     $('#sponsorVal').val("200");
-                        //     $("#loading-image").hide();
-                        // }
+                        if(data == 1){
+                            alert("Successfully Saved the addredd");
+                            $('#close').toggle();
+                        }else if(data == 2){
+                            alert("Something went wrong!");
+                        }
                     }
                 });
             });
