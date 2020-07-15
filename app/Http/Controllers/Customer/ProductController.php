@@ -13,7 +13,6 @@ use App\Address;
 use DB;
 use Carbon\Carbon;
 use App\OrderCart;
-use App\OrderItem;
 use App\Order;
 class ProductController extends Controller
 {
@@ -87,22 +86,31 @@ class ProductController extends Controller
     }
 
     public function addOrder(Request $request){
-        $order_item = new OrderItem;
-        $order_item->item_code = $request->input('item_code');
-        $order_item->item_name = $request->input('item_name');
-        $order_item->item_qty = $request->input('item_qty');
-        $order_item->item_category = $request->input('item_category');
-        $order_item->save();
+        if(!Session::has('cart')){
+            return redirect()->route('frontend.cart');
+        }
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
 
         $order = new Order;
-        $order->order_id = $this->orderID($order_item->id);
-        $order->user_id = Auth::guard('customer')->user()->id;
-        $order->order_item_id = $order_item->id;
-        if($order->save()){
-            $token = rand(1111, 9999);
-            
-            return redirect()->route('customer.thank_you')
-        }
+        $order->cart = serialize($cart);
+        $order->name = $request->input('name');
+        $order->email = $request->input('email');
+        $order->phone = $request->input('phone');
+        $order->street_address = $request->input('address');
+        $order->city = $request->input('city');
+        $order->zip = $request->input('zip');
+        $order->landmark = $request->input('landmark');
+        Auth::guard('customer')->user()->orders()->save($order);
+
+        $order_id = DB::table('orders')
+                ->where('id', $order->id)
+                ->update([
+                    'order_id' => $this->orderID($order->id),
+                ]);
+        Session::forget('cart');
+        $token = rand(1111, 9999);
+        return redirect()->route('customer.thank_you', ['token' => encrypt($token)]);
     }
 
     public function getRemoveItem($id)
@@ -138,5 +146,25 @@ class ProductController extends Controller
     public function cart()
     {
         return view('frontend.pages.cart');
+    }
+
+    public function thankYou($token){
+        try {
+            $token = decrypt($token);
+        }catch(DecryptException $e) {
+            return redirect()->back();
+        }
+        if($token){
+            return view('frontend.pages.thankyou');
+        }
+    }
+    
+    public function userOrder(){
+        $orders = Auth::guard('customer')->user()->orders;
+        $orders->transform(function($order, $key){
+             $order->cart = unserialize($order->cart);
+             return $order;
+        });
+        return view('frontend.pages.orders', ['orders' => $orders]);
     }
 }

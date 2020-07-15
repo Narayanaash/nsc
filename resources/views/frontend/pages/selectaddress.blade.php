@@ -89,9 +89,9 @@
                                             <th>Item</th>
                                             <th>Qty</th>
                                         </tr>
+                                        @foreach($products as $product)
                                         <tr>
                                             
-                                            @foreach($products as $product)
                                             <td>
                                                 {{$product['items']['product_code']}}
                                                 <input type="hidden" name="item_code" value="{{ $product['items']['product_code']}}">
@@ -105,8 +105,8 @@
                                             <td>
                                                 {{$product['qty']}}
                                             </td>
-                                            @endforeach
                                         </tr>
+                                        @endforeach
                                     </table>
                                    
                                 </div>

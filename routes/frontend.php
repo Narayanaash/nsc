@@ -31,6 +31,8 @@ Route::group(['middleware'=>'auth:customer','prefix'=>'customer','namespace'=>'C
     Route::get('/checkout', 'ProductController@getCheckout')->name('product.checkout');
     Route::post('/add/address', 'ProductController@addAddress')->name('customer.address');
     Route::post('/add/order', 'ProductController@addOrder')->name('customer.order');
+    Route::get('/thank-you/{token}', 'ProductController@thankYou')->name('customer.thank_you');
+    Route::get('/user-orders', 'ProductController@userOrder')->name('frontend.orders');
     
 });
 /*
@@ -70,14 +72,9 @@ Route::get('/user-profile', function () {
     return view('frontend.pages.userprofile');
 })->name('frontend.userprofile');
 
-Route::get('/user-orders', function () {
-    return view('frontend.pages.orders');
-})->name('frontend.orders');
 
 
-Route::get('/thank-you', function () {
-    return view('frontend.pages.thankyou');
-})->name('frontend.checkout.thankyou');
+
 
 Route::get('/delivery', function () {
     return view('frontend.pages.delivery');
