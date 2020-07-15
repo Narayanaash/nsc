@@ -32,27 +32,28 @@
                             <h3 class="item-title">Your orders so far <span class="text-success">02</span></h3>
                         </div>
                         <div class="product-list" id="quantity-holder">
-                            <div class="media media-none--xs">
-                                <div class="item-img">
-                                    <img width="200" src="{{asset('assets/product/checkout/1588667441.jpg')}}" alt="Thumbnail" class="media-img-auto">
-                                </div>
-                                <div class="media-body space-md">
-                                    <h4 class="item-title">White Emulsion</h4>
-                                    <div class="item-price">R10.00</div>
-                                    <div class="product-meta">
-                                        <ul>
-                                            <li>Code <span>: SS66565</span></li>
-                                            <li>Catg <span>: art & craft painting paint brush</span></li>
-                                            <li>Status <span>: <i>Processing...</i></span></li>
-                                        </ul>
+                            @foreach ($orders as $order)
+                                @foreach($order->cart->items as $item)
+                                <div class="media media-none--xs">
+                                    <div class="item-img">
+                                        <img width="200" src="{{asset('assets/product/checkout/'.$item['items']['file'])}}" alt="Thumbnail" class="media-img-auto">
                                     </div>
-                                    <div class="delete-btn">
-                                        <a href="#"><i class="fas fa-trash-alt"></i></a>
+                                    <div class="media-body space-md">
+                                        <h4 class="item-title">{{$item['items']['name']}}</h4>
+                                        <div class="item-price">R10.00</div>
+                                        <div class="product-meta">
+                                            <ul>
+                                                <li>Code <span>: {{$item['items']['code']}}</span></li>
+                                                <li>Catg <span>: {{$item['items']['category_id']}}</span></li>
+                                                <li>Status <span>: <i>{{$order->status == 1 ? "Processing" : "Delivered"}}</i></span></li>
+                                            </ul>
+                                        </div>
+                                        <div class="float-right"><strong>Total: </strong>R500</div>
                                     </div>
-                                    <div class="float-right"><strong>Total: </strong>R500</div>
                                 </div>
-                            </div>
-                            <div class="media media-none--xs">
+                                @endforeach
+                            @endforeach
+                            {{-- <div class="media media-none--xs">
                                 <div class="item-img">
                                     <img width="200" src="{{asset('assets/product/checkout/1588667441.jpg')}}" alt="Thumbnail" class="media-img-auto">
                                 </div>
@@ -71,7 +72,7 @@
                                     </div>
                                     <div class="float-right"><strong>Total: </strong>R500</div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

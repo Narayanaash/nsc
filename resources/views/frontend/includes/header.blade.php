@@ -41,6 +41,7 @@
     <link rel="stylesheet" href="{{asset('frontend/css/custom.css')}}">
     <!-- responsive css -->
     <link rel="stylesheet" href="{{asset('frontend/css/responsive.css')}}">
+    @stack('css')
     <!-- Modernize js -->
     <script src="{{asset('frontend/js/modernizr-3.7.1.min.js')}}"></script>
     <!-- fb share script -->
@@ -152,10 +153,25 @@
                                     </li>
                                     <li>
                                         <a class="cart-btn" href="{{route('frontend.cart')}}" title="Cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                                        <span class="badge">{{Session::has('cart') ? Session::get('cart')->totalQty : ''}}</span>
                                     </li>
+                                    @if(Auth::guard('customer')->check())
                                     <li>
                                         <a class="cart-btn" href="{{route('frontend.userprofile')}}" title="Profile"><i class="fa fa-user" aria-hidden="true"></i></a>
                                     </li>
+                                    <li>
+                                        <a href="{{ route('customer.logout') }}" class="fa fa-sign-out pull-right" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
+                                            Logout
+                                        </a>     
+                                        <form id="frm-logout" action="{{ route('customer.logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                      </li>
+                                    @else
+                                    <li>
+                                        <a class="cart-btn" href="{{route('customer.login')}}" title="Login"><i class="fa fa-user" aria-hidden="true"></i></a>
+                                    </li>
+                                    @endif
                                     <li class="header-btn">
                                         <a href="tel: 012/3741594" class="item-btn"><i class="fas fa-phone"></i></a>
                                     </li>

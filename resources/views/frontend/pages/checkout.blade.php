@@ -52,7 +52,15 @@
                                       <span class="plus"></span>
                                     </div>
                                   </div>
-                                  <a class="buy-btn" href="#header-search"><img src="{{asset('frontend/img/btn.jpg')}}" alt="service"></a>
+                                  @if(Auth::guard('customer')->user())
+                                        @if(!empty($orders))
+                                          <a class="buy-btn" href=""><img src="{{asset('frontend/img/btn.jpg')}}" alt="service"></a>
+                                        @else
+                                          <a class="buy-btn" href="#header-search"><img src="{{asset('frontend/img/btn.jpg')}}" alt="service"></a>                                        
+                                        @endif
+                                  @else
+                                    <a class="buy-btn" href="#header-search"><img src="{{asset('frontend/img/btn.jpg')}}" alt="service"></a>
+                                  @endif
                                   <ul class="code-category" style="margin-top: 25px;">
                                       <li>CODE: {{$product_checkout[0]->product_code == '' ? 'n/a' : $product_checkout[0]->product_code}}</li>
                                       <li>Categories: <a style="color: #6f6f6f;" href="{{route('frontend.products', ['category_id' => encrypt($product_checkout[0]->category_id)] )}}">{{$product_checkout[0]->heading}}</a></li>
@@ -154,12 +162,14 @@
           <label for="productName" class="col-sm-3 col-form-label product-label">Product :</label>
           <div class="col-sm-9 product-name">
             <textarea class="form-control-plaintext disabled"  id="productName" readonly style="resize: none;">{{$product_checkout[0]->name}}</textarea>
+            <input type="hidden" name="productName" id="productName" value="{{$product_checkout[0]->name}}">
           </div>
         </div>
         <div class="form-group row">
           <label for="code" class="col-sm-3 col-form-label product-label">Code :</label>
           <div class="col-sm-5 product-name">
             <input type="text" readonly class="form-control-plaintext disabled" id="code" value="{{$product_checkout[0]->product_code == '' ? 'n/a' : $product_checkout[0]->product_code}}">
+            <input type="hidden" name="code" id="code" value="{{$product_checkout[0]->name}}">
           </div>
         </div>
         <!--<div class="form-group row">-->
@@ -180,7 +190,15 @@
             <input type="number" class="form-control" maxlength="15" id="phone" placeholder="Enter your phone" required="">
           </div>
         </div>
-        <button type="submit" class="btn btn-primary mt-2 p-2" style="font-size: 100%;">SUBMIT</button>
+       
+        <div class="form-group row">
+          <label for="phone" class="col-sm-3 col-form-label">Qty :</label>
+          <div class="col-sm-9">
+            <input type="number" class="form-control" maxlength="15" name="qty" id="qty" placeholder="Enter qty" required="">
+          </div>
+        </div>
+
+        <button type="submit" id="submit" class="btn btn-primary mt-2 p-2" style="font-size: 100%;">SUBMIT</button>
         <div id="response" class="text-center"><p>Response here</p></div>
         <div class="contact-form-loading"><i class="fas fa-spinner fa-spin"></i></div>
       </form>
@@ -195,8 +213,10 @@ $("#checkout-submit-form").submit(function(e) {
   e.preventDefault();
 
   var customer_name   = $('#name').val();
-  var customer_phone = $('#phone').val();
-
+  var customer_phone  = $('#phone').val();
+  var productName     = $('#productName').val();
+  var code            = $('#code').val();
+  var qty             = $('#qty').val();
   $(".contact-form-loading").css("display", "block");
   $("#checkout-submit-form :input").prop("disabled", true);
      $.ajax({
@@ -206,6 +226,9 @@ $("#checkout-submit-form").submit(function(e) {
          _token: "{{csrf_token()}}",
         "customer_name"  : customer_name,
         "customer_phone" : customer_phone,
+        "productName"    : productName,
+        "code"           : code,
+        "qty"            : qty,
       },
       success: function(response){
         $('#response').html(response);

@@ -49,7 +49,7 @@
                                         <p><a href="{{route('frontend.checkout', ['p_id' => encrypt($single_product->id)])}}" title="{{$single_product->name}}">
                                             {{$single_product->name}}
                                         </a></p>
-                                        <a class="btn btn-info" href="{{route('frontend.checkout', ['p_id' => encrypt($single_product->id)])}}">VIEW</a>
+                                        <a class="btn btn-info" href="{{route('frontend.checkout', ['p_id' => encrypt($single_product->id)])}}">View</a>
                                     </div>
                                 </div>
                             </div>
