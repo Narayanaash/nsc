@@ -23,11 +23,6 @@ class ProductController extends Controller
         $category  = DB::table('category')->where('id', $id)->get('heading');
         $category_to_index_category = DB::table('category')->get();
         $products  = Product::where('category_id', $id)->orderBy('id', 'desc')->paginate(20);
-        $orders = Auth::guard('customer')->user()->orders;
-        $orders->transform(function($order, $key){
-             $order->cart = unserialize($order->cart);
-             return $order->cart;
-        });
         return view('frontend.pages.products', ['products' => $products, 'category' => $category, 'category_to_index_category' => $category_to_index_category, 'id' => $id]);
     }
 }
