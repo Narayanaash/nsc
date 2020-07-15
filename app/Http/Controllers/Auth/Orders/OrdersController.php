@@ -87,7 +87,8 @@ class OrdersController extends Controller
             foreach ($checkout_data as $single_data) {
 
                 $action = "";
-                $action = "<a class=\"confirmation-callback btn btn-danger\" href=\"" . route('orders.delete', ['id' => encrypt($single_data->id)]) . "\">Delete</a>";
+                $action .= "<a class=\"btn btn-primary\" href=\"" . route('orders.view', ['id' => encrypt($single_data->id)]) . "\">View</a>&nbsp;";
+                $action .= "<a class=\"confirmation-callback btn btn-danger\" href=\"" . route('orders.delete', ['id' => encrypt($single_data->id)]) . "\">Delete</a>";
 
                 $file   = "";
                 $file   = "<a class=\"publication_file\" href='../../../assets/product/checkout/".$single_data->file."' target='_blank'><img src=\"../../../assets/product/thumbnail/".$single_data->file."\"><i class=\"fa fa-share-square\"></i></a>";
@@ -126,5 +127,18 @@ class OrdersController extends Controller
             ->delete();
 
         return redirect()->back()->with('msg','<p class="text-success">Deleted successfully</p>');
+    }
+
+    public function view($id){
+        try {
+            $id = decrypt($id);
+        }catch(DecryptException $e) {
+            return redirect()->back();
+        }
+
+        $checkout = DB::table('checkout')
+        ->where('id', $id)
+        ->first();
+     return view('admin.auth.customerorder.invoice', compact('checkout'));   
     }
 }

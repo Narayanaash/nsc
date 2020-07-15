@@ -17,7 +17,7 @@ class CheckoutController extends Controller
       $customer_phone  = $request->input('customer_phone');
       $productName     = $request->input('productName');
       $code            = $request->input('code');
-      $qty            = $request->input('qty');
+      $qty             = $request->input('qty');
       if (strlen($customer_name) == 0) {
         echo "<p class=\"text-danger\">Inavild name!</p>";
         die();

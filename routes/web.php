@@ -66,6 +66,8 @@ Route::namespace('Auth')->group(function () {
             Route::get('/admin/home/orders/delete/{id}', 'OrdersController@delete')->name('orders.delete');
             // ajax route
             Route::post('/admin/home/orders/get-data', 'OrdersController@get')->name('orders.get_data');
+            Route::get('/admin/home/orders/view-data/{id}', 'OrdersController@view')->name('orders.view');
+            
         });
 
         Route::namespace('Queries')->group(function() {
