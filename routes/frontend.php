@@ -33,6 +33,7 @@ Route::group(['middleware'=>'auth:customer','prefix'=>'customer','namespace'=>'C
     Route::post('/add/order', 'ProductController@addOrder')->name('customer.order');
     Route::get('/thank-you/{token}', 'ProductController@thankYou')->name('customer.thank_you');
     Route::get('/user-orders', 'ProductController@userOrder')->name('frontend.orders');
+    Route::get('/user-query', 'ProductController@userQuery')->name('frontend.query');
     
 });
 /*

@@ -41,23 +41,27 @@ class CheckoutController extends Controller
 
       $date_i  = now();
       $date_i  = date('m/d/Y', strtotime($date_i));
-      $checkout = DB::table('checkout')->where('productName', $productName)->where('auth_name', Auth::guard('customer')->user()->id)->count();
-     if($checkout < 1){
-       DB::table('checkout')->insert([
-         "product_id"      => $id,
-         "customer_name"   => $request->input('customer_name'),
-         "customer_phone"  => $request->input('customer_phone'),
-         "productName"     => $request->input('productName'),
-         "code"             => $request->input('code'),
-         "qty"              => $request->input('qty'),
-         "auth_name"       => Auth::guard('customer')->user()->id,
-         "date"            => $date_i,
-         "created_at"      => \Carbon\Carbon::now(),
-       ]);
-       echo "<p class=\"text-success\">Thank you, one of our team will be in contact with you shortly.</p>";
-     }else{
-       echo "<p class=\"text-danger\"> You have already requested this product. Check the status in the ORDER list. </p>";
-     }
+      if(Auth::guard('customer')->check()){
+        $checkout = DB::table('checkout')->where('productName', $productName)->where('auth_name', Auth::guard('customer')->user()->id)->count();
+       if($checkout < 1){
+         DB::table('checkout')->insert([
+           "product_id"      => $id,
+           "customer_name"   => $request->input('customer_name'),
+           "customer_phone"  => $request->input('customer_phone'),
+           "productName"     => $request->input('productName'),
+           "code"             => $request->input('code'),
+           "qty"              => $request->input('qty'),
+           "auth_name"       => Auth::guard('customer')->user()->id,
+           "date"            => $date_i,
+           "created_at"      => \Carbon\Carbon::now(),
+         ]);
+         echo "<p class=\"text-success\">Thank you, one of our team will be in contact with you shortly.</p>";
+       }else{
+         echo "<p class=\"text-danger\"> You have already requested this product. Check the status in the ORDER list. </p>";
+       }
+      }else{
+        return redirect()->route('customer.login');
+      }
 
     }
 }

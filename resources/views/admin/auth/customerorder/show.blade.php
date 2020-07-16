@@ -37,6 +37,7 @@
                             <th>Cust Name</th>
                             <th>Cust Phone</th>
                             <th>Date</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                       </thead>
@@ -81,6 +82,7 @@ $(document).ready(function(){
             { "data": "customer_name" },
             { "data": "customer_phone" },
             { "data": "date" },
+            { "data": "status" },
             { "data": "action" },
         ],
         "columnDefs": [

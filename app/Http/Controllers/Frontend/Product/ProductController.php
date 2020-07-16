@@ -25,4 +25,6 @@ class ProductController extends Controller
         $products  = Product::where('category_id', $id)->orderBy('id', 'desc')->paginate(20);
         return view('frontend.pages.products', ['products' => $products, 'category' => $category, 'category_to_index_category' => $category_to_index_category, 'id' => $id]);
     }
+
+    
 }

@@ -89,6 +89,13 @@ class OrdersController extends Controller
                 $action = "";
                 $action .= "<a class=\"btn btn-primary\" href=\"" . route('orders.view', ['id' => encrypt($single_data->id)]) . "\">View</a>&nbsp;";
                 $action .= "<a class=\"confirmation-callback btn btn-danger\" href=\"" . route('orders.delete', ['id' => encrypt($single_data->id)]) . "\">Delete</a>";
+                
+                $status =  "";
+                if($single_data->status == 2){
+                    $status .= '<label class="label label-success">Sent</label>';
+                }else{
+                    $status .= '<label class="label label-success">Not Sent Yet</label>';
+                }
 
                 $file   = "";
                 $file   = "<a class=\"publication_file\" href='../../../assets/product/checkout/".$single_data->file."' target='_blank'><img src=\"../../../assets/product/thumbnail/".$single_data->file."\"><i class=\"fa fa-share-square\"></i></a>";
@@ -101,10 +108,10 @@ class OrdersController extends Controller
                 $nestedData['customer_name']    = $single_data->customer_name;
                 $nestedData['customer_phone']   = $single_data->customer_phone;
                 $nestedData['date']             = $single_data->date;
+                $nestedData['status']           = $status;
                 $nestedData['action']           = $action;
 
                 $data[]  = $nestedData;
-
                 $cnt++;
             }
         }
@@ -140,5 +147,23 @@ class OrdersController extends Controller
         ->where('id', $id)
         ->first();
      return view('admin.auth.customerorder.invoice', compact('checkout'));   
+    }
+
+    public function priceUpdate(Request $request)
+    {
+        $this->validate($request, [
+            'price' => 'required'
+        ]);
+        $product_id = $request->input('productId');
+        $user_id = $request->input('userId');
+        $price = $request->input('grand_total');
+        $price_update = DB::table('checkout')
+            ->where('auth_name', $user_id)
+            ->where('product_id', $product_id)
+            ->update([
+                'price' => $price,
+                'status' => 2
+            ]);
+        return redirect()->route('orders.show')->with('Successfully sent the order!');
     }
 }

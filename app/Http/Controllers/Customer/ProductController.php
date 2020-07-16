@@ -167,4 +167,15 @@ class ProductController extends Controller
         });
         return view('frontend.pages.orders', ['orders' => $orders]);
     }
+
+    public function userQuery(){
+       
+        $checkout_data = DB::table('checkout')
+                ->join('product', 'checkout.product_id', '=', 'product.id')
+                ->select('checkout.*', 'product.id', 'product.file', 'product.name', 'product.product_code')
+                ->where('checkout.auth_name', Auth::guard('customer')->user()->id)
+                ->get();
+        return view('frontend.pages.queries', compact('checkout_data'));   
+    }
 }
+

@@ -160,6 +160,9 @@
                                         <a class="cart-btn" href="{{route('frontend.userprofile')}}" title="Profile"><i class="fa fa-user" aria-hidden="true"></i></a>
                                     </li>
                                     <li>
+                                        <a class="cart-btn" href="{{route('frontend.query')}}" title="Query"><i class="fa fa-user" aria-hidden="true"></i></a>
+                                    </li>
+                                    <li>
                                         <a href="{{ route('customer.logout') }}" class="fa fa-sign-out pull-right" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
                                             Logout
                                         </a>     

@@ -3,6 +3,12 @@
 @section('content')
 
 <div class="content-wrapper" style="min-height: 1244.06px;">
+  @if (Session::has('message'))
+    <div class="alert alert-success" >{{ Session::get('message') }}</div>
+    @endif
+    @if (Session::has('error'))
+        <div class="alert alert-danger">{{ Session::get('error') }}</div>
+    @endif
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
@@ -29,7 +35,9 @@
             </div>
             <div class="panel-body">
                 <div class="table-responsive">
-                    
+                  {{ Form::open(['method' => 'post','route'=>'order.price_update', 'class' => 'main-form full']) }}
+                  <input type="hidden" name="productId" value="{{$checkout->product_id}}">
+                  <input type="hidden" name="userId" value="{{$checkout->auth_name}}">
                     <table class="table table-condensed">
                         <thead>
                             <tr>
@@ -43,8 +51,19 @@
                             <!-- foreach ($order->lineItems as $line) or some such thing here -->
                             <tr>
                                 <td>{{$checkout->productName}}</td>
-                                <td class="text-center"><input type="number" name="price" id="price" placeholder="Enter the Rate" class="form-control"></td>
-                                <td class="text-center"><input type="number" name="qty" id="qty" value="{{$checkout->qty}}" class="form-control"> </td>
+                                <td class="text-center">
+                                  @if($checkout->price == NULL)
+                                    <input type="number" name="price" id="price" placeholder="Enter the Rate" class="form-control">
+                                  @else
+                                    <input type="number" name="price" id="price" value="{{$checkout->price}}" placeholder="Enter the Rate" class="form-control">
+                                  @endif
+                                  @if($errors->has('price'))
+                                  <span class="invalid-feedback" role="alert" style="color:red">
+                                      <strong>{{ $errors->first('price') }}</strong>
+                                  </span>
+                                @enderror
+                                </td>
+                                <td class="text-center"><input type="number" name="qty" id="qty" readonly value="1" class="form-control"> </td>
                                 <td class="text-right"><input type="text" value="0.0" readonly class="form-control" id="row_total"></td>
                             </tr>
                             <tr>
@@ -58,12 +77,14 @@
                                 <td class="no-line"></td>
                                 <td class="no-line text-center"><strong>Total</strong></td>
                                 <td class="no-line text-right"><input type="text" readonly value="0.0" class="form-control" id="total"></span></td>
+                                <input type="hidden" name="grand_total" id="grand_total">
                             </tr>
                         </tbody>
                     </table>
                     <div class="col-md-6">
-                        <button class="btn btn-primary text-center" id="send">Send Order</button>
+                        <button type="submit" class="btn btn-primary text-center" name="send" id="send">Send Order</button>
                     </div>
+                  </form>
                 </div>
             </div>
         </div>
@@ -87,6 +108,7 @@ $(document).ready(function(){
         $("#row_total").val(total);
         $("#sub").val(0.0);
         $("#total").val(total);
+        $("#grand_total").val(total);
     });
 });
 </script>

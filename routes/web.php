@@ -67,6 +67,7 @@ Route::namespace('Auth')->group(function () {
             // ajax route
             Route::post('/admin/home/orders/get-data', 'OrdersController@get')->name('orders.get_data');
             Route::get('/admin/home/orders/view-data/{id}', 'OrdersController@view')->name('orders.view');
+            Route::post('/admin/home/orders/price-update', 'OrdersController@priceUpdate')->name('order.price_update');
             
         });
 
