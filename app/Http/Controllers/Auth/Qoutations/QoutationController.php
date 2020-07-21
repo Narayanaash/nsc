@@ -8,6 +8,7 @@ use App\Qoutation;
 use App\QoutationDetails;
 use App\Models\Customer;
 use DB;
+use DataTables;
 class QoutationController extends Controller
 {
     public function show()
