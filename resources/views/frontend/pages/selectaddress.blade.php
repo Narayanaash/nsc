@@ -58,12 +58,12 @@
                                     <input type="hidden" name="zip" value="{{ $addr->zip }}">
                                     <input type="hidden" name="landmark" value="{{ $addr->landmark }}">
                                 </div>
-                            <a href="#header-search" class="fw-btn-fill btn-success text-textprimary letter-specing-0">Add new address?<i class="fas fa-long-arrow-alt-right"></i></a>
                             </div>
                         </div>
                     </div>
                     @endforeach
-                @endif
+                    @endif
+                    <a href="#header-search" class="fw-btn-fill btn-success text-textprimary letter-specing-0">Add new address?<i class="fas fa-long-arrow-alt-right"></i></a>
                     {{-- <div class="brand-box-layout2">
                         <div class="item-img text-left">
                             <div class="widget widget-product-calculate">
