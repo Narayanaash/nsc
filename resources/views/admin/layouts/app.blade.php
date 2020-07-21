@@ -155,6 +155,12 @@
             </ul>
           </li>
           <li class="nav-item">
+            <a href="{{route('qoutations.show')}}" class="nav-link {{ (request()->is('admin/home/quotations/view')) ? 'active' : '' }}">
+              <i class="nav-icon fas fa-eye"></i>
+              <p>View Quotations</p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="{{route('orders.show')}}" class="nav-link {{ (request()->is('admin/home/orders/view')) ? 'active' : '' }}">
               <i class="nav-icon fas fa-eye"></i>
               <p>View Orders</p>

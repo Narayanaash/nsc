@@ -78,7 +78,15 @@
                             <div class="header-topbar-layout1">
                                 <div class="header-top-left">
                                     <ul>
-                                        <li><i class="fas fa-map-marker-alt"></i><span>Address:</span>291 Tangerine street, shop no 7, laudium square Pretoria 0037</li>
+                                        <li>
+                                            @if(Auth::guard('customer')->check())
+                                            @php 
+                                                    $address = App\Address::where("user_id", Auth::guard('customer')->user()->id)->first();
+                                            @endphp
+                                                <i class="fas fa-map-marker-alt"></i><span>Address:</span>{{$address->landmark}}, {{$address->city}}, {{$address->street_address}} - {{$address->zip}}                                        </li>
+                                            @else
+                                                <i class="fas fa-map-marker-alt"></i><span>Address: No address found
+                                            @endif
                                         <!--<li><i class="far fa-clock"></i><span>Business Hours:</span> Mon-Fri: 08:00 am - 05:00 pm</li>-->
                                     </ul>
                                 </div>
@@ -153,14 +161,11 @@
                                     </li>
                                     <li>
                                         <a class="cart-btn" href="{{route('frontend.cart')}}" title="Cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
-                                        <span class="badge">{{Session::has('cart') ? Session::get('cart')->totalQty : ''}}</span>
+                                        <span class="badge">{{ count((array) session('cart')) }}</span>
                                     </li>
                                     @if(Auth::guard('customer')->check())
                                     <li>
                                         <a class="cart-btn" href="{{route('frontend.userprofile')}}" title="Profile"><i class="fa fa-user" aria-hidden="true"></i></a>
-                                    </li>
-                                    <li>
-                                        <a class="cart-btn" href="{{route('frontend.query')}}" title="Query"><i class="fa fa-user" aria-hidden="true"></i></a>
                                     </li>
                                     <li>
                                         <a href="{{ route('customer.logout') }}" class="fa fa-sign-out pull-right" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">

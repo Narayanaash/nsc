@@ -33,17 +33,17 @@
                             <h3 class="item-title">Your Cart <span>2 Items</span></h3>
                         </div>
                         <div class="product-list" id="quantity-holder">
-                            @foreach($products as $product)
+                            @foreach(session('cart') as $id => $details)
                             <div class="media media-none--xs">
                                 <div class="item-img">
-                                    <img width="200" src="{{asset('assets/product/checkout/'.$product['items']['file'])}}" alt="Thumbnail" class="media-img-auto">
+                                    <img width="200" src="{{asset('assets/product/checkout/'.$details['photo'])}}" alt="Thumbnail" class="media-img-auto">
                                 </div>
                                 <div class="media-body space-md">
-                                    <h4 class="item-title">{{$product['items']['name']}}</h4>
+                                    <h4 class="item-title">{{$details['name']}}</h4>
                                     <div class="product-meta">
                                         <ul>
-                                            <li>Code <span>: {{$product['items']['product_code']}}</span></li>
-                                            <li>Catg <span>: {{$product['items']['category_id']}}</span></li>
+                                            <li>Code <span>: {{$details['product_code']}}</span></li>
+                                            <li>Catg <span>: {{$details['category_name']}}</span></li>
                                         </ul>
                                     </div>
                                     <div class="quantity-area">
@@ -52,15 +52,16 @@
                                                 <button class="quantity-btn quantity-plus" type="button">
                                                     <i class="fas fa-angle-up" aria-hidden="true"></i>
                                                 </button>
-                                                <input type="text" name='quantity' class="form-control quantity-input" value="{{$product['qty']}}">
+                                                <input type="text" name='quantity' id="quantity" class="form-control quantity-input quantity" value="{{$details['quantity']}}">
                                                 <button class="quantity-btn quantity-minus" type="button">
                                                     <i class="fas fa-angle-down" aria-hidden="true"></i>
                                                 </button>
+                                                <div class="ud">
+                                                    <button class="btn btn-info update-cart" data-id="{{ $id }}"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+                                                    <button class="btn btn-danger remove-from-cart" data-id="{{ $id }}"><i class="fas fa-trash-alt"></i></button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="delete-btn">
-                                        <a href="{{route('product.remove', ['id' => $product['items']['id']])}}"><i class="fas fa-trash-alt"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -81,7 +82,7 @@
                         <div class="col-lg-6"></div>
                         @if(Session::has('cart'))
                         <div class="col-lg-3  pt-4 pb-5">
-                            <a href="{{route('product.checkout')}}" class="fw-btn-fill bg-accent text-textprimary letter-specing-0">Proceed To Checkout<i class="fas fa-long-arrow-alt-right"></i></a>
+                            <a href="{{route('product.checkout')}}" class="fw-btn-fill bg-accent text-textprimary letter-specing-0">Enter Address<i class="fas fa-long-arrow-alt-right"></i></a>
                         </div>
                         @endif
                     </div>
@@ -92,5 +93,37 @@
     <!-- Shop Area End Here -->
 @endsection
 @section('script')
-<!-- js goes here -->
+<script>
+    $(document).ready(function(){
+        $(".update-cart").click(function (e) {
+           e.preventDefault();
+           var ele = $(this);
+            $.ajax({
+               url: '{{ url('update-cart') }}',
+               method: "patch",
+               data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id"), quantity: ele.parent().parent().find(".quantity").val()},
+               success: function (response) {
+                   window.location.reload();
+               }
+            });
+        });
+ 
+        $(".remove-from-cart").click(function (e) {
+            e.preventDefault();
+ 
+            var ele = $(this);
+ 
+            if(confirm("Are you sure")) {
+                $.ajax({
+                    url: '{{ url('remove-from-cart') }}',
+                    method: "DELETE",
+                    data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id")},
+                    success: function (response) {
+                        window.location.reload();
+                    }
+                });
+            }
+        });
+    })
+</script>
 @endsection

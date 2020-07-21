@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use File;
 use Response;
 use DB;
+use App\Qoutation;
+use App\QoutationDetails;
 
 class OrdersController extends Controller
 {
@@ -152,18 +154,28 @@ class OrdersController extends Controller
     public function priceUpdate(Request $request)
     {
         $this->validate($request, [
-            'price' => 'required'
+            'price' => 'required',
+            'quantity' => 'required'
         ]);
-        $product_id = $request->input('productId');
-        $user_id = $request->input('userId');
-        $price = $request->input('grand_total');
-        $price_update = DB::table('checkout')
-            ->where('auth_name', $user_id)
-            ->where('product_id', $product_id)
+        $qoutation_id = $request->input('qoutation_id');
+        $customer_id = $request->input('customer_id');
+        $price = $request->get('price');
+        $total_price = $request->input('grand_total');
+        $id = $request->get('product_id');    
+
+        $price_update = DB::table('qoutations')
+            ->where('user_id', $customer_id)
+            ->where('id', $qoutation_id)
             ->update([
-                'price' => $price,
+                'total_price' => $total_price,
                 'status' => 2
             ]);
+
+       for ($i=0; $i < count($price) ; $i++) { 
+        QoutationDetails::where('qoutation_id', '=', $qoutation_id)->where('id', $id[$i])->update([
+                'price' => $price[$i],
+            ]);
+       }
         return redirect()->route('orders.show')->with('Successfully sent the order!');
     }
 }

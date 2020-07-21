@@ -15,11 +15,16 @@ class Customer extends Authenticatable
     ];
 
     protected $hidden = [
-        'password', 'remember_token',
+        'password'
     ];
 
-    public function orders()
+    public function qoutations()
     {
-        return $this->hasMany('App\Order');
+        return $this->hasMany('App\Qoutation');
+    }
+
+    public function address()
+    {
+        return $this->hasMany('App\Address', 'user_id', 'id');
     }
 }

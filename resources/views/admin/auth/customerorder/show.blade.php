@@ -3,6 +3,12 @@
 @section('content')
 
 <div class="content-wrapper" style="min-height: 1244.06px;">
+  @if (Session::has('message'))
+    <div class="alert alert-success" >{{ Session::get('message') }}</div>
+    @endif
+    @if (Session::has('error'))
+        <div class="alert alert-danger">{{ Session::get('error') }}</div>
+    @endif
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
@@ -30,12 +36,11 @@
                       <thead>
                         <tr>
                             <th>Sl No</th>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Pr Code</th>
+                            <th>Quantity</th>
                             <!--<th>Price</th>-->
                             <th>Cust Name</th>
                             <th>Cust Phone</th>
+                            <th>Address</th>
                             <th>Date</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -59,42 +64,35 @@
 @section("script")
 <script type="text/javascript">
 
-$(document).ready(function(){
-
-    $('#table_id').DataTable({
-
-        "processing": true,
-        "serverSide": true,
-        "ajax":{
-            "url": "{{ route('orders.get_data') }}",
-            "dataType": "json",
-            "type": "POST",
-            "data":{
-                _token: "{{csrf_token()}}",
-            }
-        },
-        "columns": [
-            { "data": "id" },
-            { "data": "file" },
-            { "data": "name" },
-            { "data": "code" },
-            // { "data": "price" },
-            { "data": "customer_name" },
-            { "data": "customer_phone" },
-            { "data": "date" },
-            { "data": "status" },
-            { "data": "action" },
-        ],
-        "columnDefs": [
-            { "width": "28%", "targets": 2 },
-        ],
+  $(function () {
+        var table = $('#table_id').DataTable({
+            processing: true,
+            serverSide: true,
+            iDisplayLength: 50,
+            ajax: "{{ route('qoutations.get_data') }}",
+            columns: [
+                {data: 'id', name: 'id',searchable: true},
+                {data: 'quantity', name: 'quantity',searchable: true},
+                {data: 'customer.name', name: 'name',searchable: true},
+                {data: 'customer.phone', name: 'phone',searchable: true},
+                {data: 'address.street_address', name: 'address',searchable: true},
+                {data: 'created_at', name: 'created_at',searchable: true},
+                {data: 'status', name: 'status', render:function(data, type, row){
+                  if (row.status == '1') {
+                    return "<button class='btn btn-info'>Ordered</button>"
+                  }else if(row.status == 2){
+                    return "<button class='btn btn-success'>Dispatched</button>"
+                  }else if(row.status == 3){
+                    return "<button class='btn btn-warning'>Cancelled</button>"
+                  }else if(row.status == 4){
+                    return "<button class='btn btn-danger'>Rejected</button>"
+                  }                        
+                }},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+            ]
+        });
+        
     });
-    $('#table_id').on( 'draw.dt', function () {
-      $('.confirmation-callback').confirmation({
-      });
-      $('.confirmation-callback').confirmation();
-    });
-});
 </script>
 @endsection
 

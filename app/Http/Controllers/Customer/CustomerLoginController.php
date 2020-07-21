@@ -28,7 +28,7 @@ class CustomerLoginController extends Controller
                 Session::forget('oldUrl');
                 return redirect()->to($oldUrl);
             }
-            return redirect()->intended('/dashboard');
+            return redirect()->route('frontend.home');
         }
         return back()->withInput($request->only('email', 'remember'))->with('error','Email or password is incorrect!');
     }

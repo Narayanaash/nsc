@@ -4,6 +4,12 @@
     <title>NSC STATIONERY | Checkout-address | Top Stationery Supplier in Africa</title>
 @endsection
 @section('content')
+    @if (Session::has('message'))
+    <div class="alert alert-success" >{{ Session::get('message') }}</div>
+    @endif
+    @if (Session::has('error'))
+        <div class="alert alert-danger">{{ Session::get('error') }}</div>
+    @endif
         <!-- Checkout Area Start Here -->
         <section class="inner-page-padding pt-5 mt-5">
             <div class="container">
@@ -25,7 +31,14 @@
                         <div class="item-img text-left">
                             <div class="widget widget-product-calculate">
                                 <div class="heading-layout3">
-                                    <h3 class="item-title">Address<input type="radio" name="address_select" class="ml-3"></h3>
+                                    <h3 class="item-title">
+                                        Address<input type="radio" name="address_select" value="{{$addr->id}}" class="ml-3">
+                                        @if($errors->has('address_select'))
+                                        <span class="invalid-feedback" role="alert" style="color:red">
+                                            <strong>{{ $errors->first('address_select') }}</strong>
+                                        </span>
+                                      @enderror
+                                    </h3>
                                 </div>
                                 <div class="list-item">
                                     <ul>
@@ -89,21 +102,21 @@
                                             <th>Item</th>
                                             <th>Qty</th>
                                         </tr>
-                                        @foreach($products as $product)
+                                        @foreach(session('cart') as $id => $details)
                                         <tr>
                                             
                                             <td>
-                                                {{$product['items']['product_code']}}
-                                                <input type="hidden" name="item_code" value="{{ $product['items']['product_code']}}">
-                                                <input type="hidden" name="item_name" value="{{ $product['items']['name'] }}">
-                                                <input type="hidden" name="item_qty" value="{{ $product['qty'] }}">
-                                                <input type="hidden" name="item_category" value="{{ $product['items']['category_id'] }}">
+                                                {{$details['product_code']}}
+                                                <input type="hidden" name="item_code" value="{{ $details['product_code']}}">
+                                                <input type="hidden" name="item_name" value="{{ $details['name'] }}">
+                                                <input type="hidden" name="item_qty" value="{{ $details['quantity'] }}">
+                                                <input type="hidden" name="item_category" value="{{ $details['category_name'] }}">
                                             </td>
                                             <td>
-                                                <img width="80" src="{{asset('assets/product/checkout/'.$product['items']['file'])}}" alt="Thumbnail" class="media-img-auto">
+                                                <img width="80" src="{{asset('assets/product/checkout/'.$details['photo'])}}" alt="Thumbnail" class="media-img-auto">
                                             </td>
                                             <td>
-                                                {{$product['qty']}}
+                                                {{$details['quantity']}}
                                             </td>
                                         </tr>
                                         @endforeach
@@ -113,7 +126,7 @@
                             </ul>
                         </div>
                         @endif
-                        <button type="submit" class="fw-btn-fill bg-accent text-textprimary letter-specing-0">Proceed To Checkout<i class="fas fa-long-arrow-alt-right"></i></button>
+                        <button type="submit" class="fw-btn-fill bg-accent text-textprimary letter-specing-0">Send Quotation<i class="fas fa-long-arrow-alt-right"></i></button>
                     </div>
                </div>
             </div>

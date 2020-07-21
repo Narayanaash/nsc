@@ -29,26 +29,27 @@
                 <div class="col-lg-12">
                     <div class="cart-page-box-layout1">
                         <div class="item-header">
-                            <h3 class="item-title">Your orders so far <span class="text-success">02</span></h3>
+                            <h3 class="item-title">Your orders so far</h3>
                         </div>
                         <div class="product-list" id="quantity-holder">
+                            @if(isset($orders) && !empty($orders))
                             @foreach ($orders as $order)
-                                @foreach($order->cart->items as $item)
+                                @foreach ($order->qoutation_details as $ordr)
                                 <div class="media media-none--xs">
                                     <div class="item-img">
-                                        <img width="200" src="{{asset('assets/product/checkout/'.$item['items']['file'])}}" alt="Thumbnail" class="media-img-auto">
+                                        <img width="200" src="{{asset('assets/product/checkout/'.$ordr->photo)}}" alt="Thumbnail" class="media-img-auto">
                                     </div>
                                     <div class="media-body space-md">
-                                        <h4 class="item-title">{{$item['items']['name']}}</h4>
-                                        <div class="item-price">R10.00</div>
+                                        <h4 class="item-title">{{$ordr->product_name}}</h4>
+                                        <div class="item-price">ZAR {{number_format($ordr->price, 2)}}</div>
                                         <div class="product-meta">
                                             <ul>
-                                                <li>Code <span>: {{$item['items']['code']}}</span></li>
-                                                <li>Catg <span>: {{$item['items']['category_id']}}</span></li>
-                                                <li>Status <span>: <i>{{$order->status == 1 ? "Processing" : "Delivered"}}</i></span></li>
+                                                <li>Code <span>: {{$ordr->product_code}}</span></li>
+                                                <li>Catg <span>: {{$ordr->product_category}}</span></li>
+                                                <li>Status <span>: <i>{{$ordr->status == 1 ? "Processing" : "Delivered"}}</i></span></li>
                                             </ul>
                                         </div>
-                                        <div class="float-right"><strong>Total: </strong>R500</div>
+                                        
                                     </div>
                                 </div>
                                 @endforeach
@@ -73,6 +74,7 @@
                                     <div class="float-right"><strong>Total: </strong>R500</div>
                                 </div>
                             </div> --}}
+                            @endif
                         </div>
                     </div>
                 </div>

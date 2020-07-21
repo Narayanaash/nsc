@@ -61,6 +61,17 @@ Route::namespace('Auth')->group(function () {
             Route::post('/admin/home/category/get-data', 'CategoryController@get')->name('category.get_data');
         });
 
+        Route::namespace('Qoutations')->group(function() {
+            Route::get('/admin/home/qoutations/view', 'QoutationController@show')->name('qoutations.show');
+            Route::get('/admin/home/qoutations/delete/{id}', 'QoutationController@delete')->name('qoutations.delete');
+            Route::get('/admin/home/qoutations/reject/{id}', 'QoutationController@reject')->name('qoutations.reject');
+            // ajax route
+            Route::get('/admin/home/qoutations/get-data', 'QoutationController@get')->name('qoutations.get_data');
+            Route::get('/admin/home/qoutations/view-data/{id}', 'QoutationController@view')->name('qoutations.view');
+            Route::post('/admin/home/qoutations/price-update', 'QoutationController@priceUpdate')->name('qoutations.price_update');
+            
+        });
+
         Route::namespace('Orders')->group(function() {
             Route::get('/admin/home/orders/view', 'OrdersController@show')->name('orders.show');
             Route::get('/admin/home/orders/delete/{id}', 'OrdersController@delete')->name('orders.delete');

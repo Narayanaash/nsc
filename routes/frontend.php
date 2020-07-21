@@ -23,7 +23,9 @@ Route::post('/customer/logout', 'Customer\CustomerLoginController@logout')->name
 Route::post('/add/customer', 'Customer\RegistrationController@addCustomer')->name('add.customer');
 // Add To Cart
 Route::get('/add/to/cart/{id}', 'Customer\ProductController@getAddToCart')->name('product.add_to_cart');
-Route::get('/remove/{id}', 'Customer\ProductController@getRemoveItem')->name('product.remove');
+Route::patch('update-cart', 'Customer\ProductController@update');
+Route::delete('remove-from-cart', 'Customer\ProductController@remove');
+
 Route::get('/shopping-cart', 'Customer\ProductController@cart')->name('frontend.cart');
 
 Route::group(['middleware'=>'auth:customer','prefix'=>'customer','namespace'=>'Customer'],function(){
@@ -59,7 +61,7 @@ Route::get('/contact', function () {
     return view('frontend.pages.contact');
 })->name('contact');
 
-Route::get('/shopping-cart', 'Customer\ProductController@getCart')->name('frontend.cart');
+// Route::get('/shopping-cart', 'Customer\ProductController@getCart')->name('frontend.cart');
 
 Route::get('/user-login', function () {
     return view('frontend.pages.login');

@@ -14,48 +14,88 @@ use DB;
 use Carbon\Carbon;
 use App\OrderCart;
 use App\Order;
+use App\Qoutation;
+use App\QoutationDetails;
 class ProductController extends Controller
 {
     public function getAddToCart(Request $request, $id){
         $product = Product::find($id);
-        if(Auth::guard('customer')->check()){
-            $oldCart = Session::has('cart') ? Session::get('cart') : null;
-            $cart = new Cart($oldCart);    
-            $cart->add($product, $product->id);
-            $cart_insert = DB::table('order_carts')
-                ->insert([
-                    'user_id'     => Auth::guard('customer')->user()->id,
-                    'product_id'     => $product->id,
-                    'created_at' => Carbon::now()->setTimezone('Asia/Kolkata')->toDateTimeString(),
-                ]);
-        }else{
-            $oldCart = Session::has('cart') ? Session::get('cart') : null;
-            $cart = new Cart($oldCart);    
-            $cart->add($product, $product->id);
+        if(!$product) {
+            abort(404);
+        }
+        $cart = session()->get('cart');
+        //  if cart is empty then this the first product
+        if(!$cart) {
+            $cart = [
+                    $id => [
+                        "name" => $product->name,
+                        "product_code" => $product->product_code,
+                        "quantity" => 1,
+                        "photo" => $product->file,
+                        "category_name" => $product->category->heading
+                    ]
+            ];
+           
+            session()->put('cart', $cart);
+            return redirect()->back();
+        }
+ 
+        // if cart not empty then check if this product exist then increment quantity
+        if(isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+            session()->put('cart', $cart);
+            return redirect()->back();
         }
 
-        $request->session()->put('cart', $cart);
-        return redirect()->route('frontend.products', ['category_id' => encrypt($product->category_id)]);
+        // if item not exist in cart then add to cart with quantity = 1
+        $cart[$id] = [
+            "name" => $product->name,
+            "product_code" => $product->product_code,
+            "quantity" => 1,
+            "photo" => $product->file,
+            "category_name" => $product->category->heading
+        ];
+
+        session()->put('cart', $cart);
+        return redirect()->back();
     }
 
+    public function update(Request $request)
+    {
+        if(($request->id) && ($request->quantity))
+        {
+            $cart = session()->get('cart');
+            $cart[$request->id]["quantity"] = $request->quantity;
+            session()->put('cart', $cart);
+            session()->flash('success', 'Cart updated successfully');
+        }
+    }
+ 
+    public function remove(Request $request)
+    {
+        if($request->id) {
+            $cart = session()->get('cart');
+            if(isset($cart[$request->id])) {
+                unset($cart[$request->id]);
+                session()->put('cart', $cart);
+            }
+            session()->flash('success', 'Product removed successfully');
+        }
+    }
     public function getCart(){
         if(!Session::has('cart')){
             return view('frontend.pages.cart');
         }
-        $oldCart = Session::get('cart');
-        $cart = new Cart($oldCart);
-        return view('frontend.pages.cart', ['products' => $cart->items]);
+        return view('frontend.pages.cart');
     }
 
     public function getCheckout(){
         if(!Session::has('cart')){
             return view('frontend.pages.selectaddress');
         }
-        $oldCart = Session::get('cart');
-        $cart = new Cart($oldCart);
+       
         $address = Address::where('user_id', Auth::guard('customer')->user()->id)->get();
-        $order_cart = OrderCart::where('user_id', Auth::guard('customer')->user()->id)->get();
-        return view('frontend.pages.selectaddress', ['products' => $cart->items, 'address' => $address]);
+        return view('frontend.pages.selectaddress', ['address' => $address]);
     }
 
     public function addAddress(Request $request){
@@ -65,7 +105,7 @@ class ProductController extends Controller
            $phone = $request->input('phone');
            $city = $request->input('city');
            $zip = $request->input('zip');
-           $address = $request->input('address');
+           $addresses = $request->input('address');
            $landmark = $request->input('landmark');
            
            $address = new Address;
@@ -75,39 +115,48 @@ class ProductController extends Controller
            $address->phone = $phone;
            $address->city = $city;
            $address->zip = $zip;
-           $address->address = $address;
+           $address->street_address = $addresses;
            $address->landmark = $landmark;
            if($address->save()){
                return 1;
-           }else{
-               return 2;
            }
        }
     }
 
     public function addOrder(Request $request){
+       $this->validate($request, [
+           'address_select'  => 'required'
+       ]);
+
         if(!Session::has('cart')){
             return redirect()->route('frontend.cart');
         }
-        $oldCart = Session::get('cart');
-        $cart = new Cart($oldCart);
+       
+        $qoutation = new Qoutation;
+        $qoutation->user_id = Auth::guard('customer')->user()->id;
+        $qoutation->address_id = $request->input('address_select');
+        $qoutation->quantity  = $request->input('item_qty');
 
-        $order = new Order;
-        $order->cart = serialize($cart);
-        $order->name = $request->input('name');
-        $order->email = $request->input('email');
-        $order->phone = $request->input('phone');
-        $order->street_address = $request->input('address');
-        $order->city = $request->input('city');
-        $order->zip = $request->input('zip');
-        $order->landmark = $request->input('landmark');
-        Auth::guard('customer')->user()->orders()->save($order);
+        $qoutation->save();
 
-        $order_id = DB::table('orders')
-                ->where('id', $order->id)
-                ->update([
-                    'order_id' => $this->orderID($order->id),
-                ]);
+        $cart = Session::get('cart');
+        foreach ($cart as $key => $value) {
+            $name = $value['name'];
+            $code = $value['product_code'];
+            $quantity = $value['quantity'];
+            $photo = $value['photo'];
+            $category_name = $value['category_name'];
+            $qoutation_details = new QoutationDetails;
+            $qoutation_details->qoutation_id = $qoutation->id;
+            $qoutation_details->product_name = $name;
+            $qoutation_details->product_code = $code;
+            $qoutation_details->product_category = $category_name;
+            $qoutation_details->photo = $photo;
+            $qoutation_details->quantity = $quantity;
+    
+            $qoutation_details->save();
+        } 
+
         Session::forget('cart');
         $token = rand(1111, 9999);
         return redirect()->route('customer.thank_you', ['token' => encrypt($token)]);
@@ -160,12 +209,8 @@ class ProductController extends Controller
     }
     
     public function userOrder(){
-        $orders = Auth::guard('customer')->user()->orders;
-        $orders->transform(function($order, $key){
-             $order->cart = unserialize($order->cart);
-             return $order;
-        });
-        return view('frontend.pages.orders', ['orders' => $orders]);
+       $orders = Qoutation::with('qoutation_details')->where('user_id', Auth::guard('customer')->user()->id)->orderBy('created_at', 'DESC')->paginate(10);
+        return view('frontend.pages.orders', compact('orders'));
     }
 
     public function userQuery(){
