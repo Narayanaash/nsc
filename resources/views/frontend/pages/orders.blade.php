@@ -46,7 +46,7 @@
                                             <ul>
                                                 <li>Code <span>: {{$ordr->product_code}}</span></li>
                                                 <li>Catg <span>: {{$ordr->product_category}}</span></li>
-                                                <li>Status <span>: <i>{{$ordr->status == 1 ? "Processing" : "Delivered"}}</i></span></li>
+                                                <li>Status <span>: <i>{{$ordr->price == NULL ? "Processing" : "Delivered"}}</i></span></li>
                                             </ul>
                                         </div>
                                         

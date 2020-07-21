@@ -57,6 +57,7 @@
                                     <input type="hidden" name="city" value="{{ $addr->city }}">
                                     <input type="hidden" name="zip" value="{{ $addr->zip }}">
                                     <input type="hidden" name="landmark" value="{{ $addr->landmark }}">
+                                    <a href="#header-search" class="fw-btn-fill btn-success text-textprimary letter-specing-0">Add new address?<i class="fas fa-long-arrow-alt-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -208,8 +209,7 @@
                     data: {name: name, email: email, phone: phone, address: address, city: city, zip: zip, landmark: landmark},
                     success: function(data){
                         if(data == 1){
-                            alert("Successfully Saved the addredd");
-                            $('#close').toggle();
+                            window.location.reload();
                         }else if(data == 2){
                             alert("Something went wrong!");
                         }
