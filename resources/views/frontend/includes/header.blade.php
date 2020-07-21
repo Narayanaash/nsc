@@ -81,9 +81,14 @@
                                         <li>
                                             @if(Auth::guard('customer')->check())
                                             @php 
-                                                    $address = App\Address::where("user_id", Auth::guard('customer')->user()->id)->first();
+                                                $address = App\Address::where("user_id", Auth::guard('customer')->user()->id)->first();
+                                                $count = App\Address::where("user_id", Auth::guard('customer')->user()->id)->count();
                                             @endphp
-                                                <i class="fas fa-map-marker-alt"></i><span>Address:</span>{{$address->landmark}}, {{$address->city}}, {{$address->street_address}} - {{$address->zip}}                                        </li>
+                                                @if($count > 1)
+                                                    <i class="fas fa-map-marker-alt"></i><span>Address:</span>{{$address->landmark}}, {{$address->city}}, {{$address->street_address}} - {{$address->zip}}</li>
+                                                @else
+                                                    <i class="fas fa-map-marker-alt"></i><span>Address: No address found
+                                                @endif
                                             @else
                                                 <i class="fas fa-map-marker-alt"></i><span>Address: No address found
                                             @endif

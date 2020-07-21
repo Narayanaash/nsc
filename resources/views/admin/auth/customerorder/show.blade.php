@@ -75,7 +75,7 @@
                 {data: 'quantity', name: 'quantity',searchable: true},
                 {data: 'customer.name', name: 'name',searchable: true},
                 {data: 'customer.phone', name: 'phone',searchable: true},
-                {data: 'address.street_address', name: 'address',searchable: true},
+                {data: 'address.street_address', name: 'street_address',searchable: true},
                 {data: 'created_at', name: 'created_at',searchable: true},
                 {data: 'status', name: 'status', render:function(data, type, row){
                   if (row.status == '1') {
