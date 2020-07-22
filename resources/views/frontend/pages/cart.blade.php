@@ -57,8 +57,8 @@
                                                     <i class="fas fa-angle-down" aria-hidden="true"></i>
                                                 </button>
                                                 <div class="ud">
-                                                    <button class="btn btn-info update-cart" data-id="{{ $id }}"><i class="fa fa-refresh" aria-hidden="true"></i></button>
-                                                    <button class="btn btn-danger remove-from-cart" data-id="{{ $id }}"><i class="fas fa-trash-alt"></i></button>
+                                                    <button class="btn btn-info update-cart" data-id="{{ $id }}">Update Quantity</button>
+                                                    <button class="btn btn-danger remove-from-cart" data-id="{{ $id }}">Delete Item</button>
                                                 </div>
                                             </div>
                                         </div>
