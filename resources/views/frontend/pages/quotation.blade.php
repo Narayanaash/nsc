@@ -93,7 +93,8 @@
                                       <tr>
                                         <th scope="col">Sl No.</th>
                                         <th scope="col">Product Name</th>
-                                        <th scope="col">Quantity Rate</th>
+                                        <th scope="col">Quantity</th>
+                                        <th scope="col">Rate</th>
                                         <th scope="col">Total</th>
                                       </tr>
                                     </thead>
@@ -102,18 +103,21 @@
                                         <th scope="row">1</th>
                                         <td>USB Pend Drive</td>
                                         <td>4</td>
+                                        <td>R125</td>
                                         <td>R500</td>
                                       </tr>
                                       <tr>
                                         <th scope="row">2</th>
                                         <td>USB Pend Drive</td>
                                         <td>4</td>
+                                        <td>R125</td>
                                         <td>R500</td>
                                       </tr>
                                       <tr>
                                         <th scope="row">3</th>
                                         <td>USB Pend Drive</td>
                                         <td>4</td>
+                                        <td>R125</td>
                                         <td>R500</td>
                                       </tr>
                                     </tbody>
