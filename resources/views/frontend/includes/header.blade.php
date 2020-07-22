@@ -164,25 +164,43 @@
                                             </div>
                                         </div>
                                     </li>
-                                    <li>
+                                    <li class="cart-li">
                                         <a class="cart-btn" href="{{route('frontend.cart')}}" title="Cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
                                         <span class="badge">{{ count((array) session('cart')) }}</span>
                                     </li>
                                     @if(Auth::guard('customer')->check())
-                                    <li>
-                                        <a class="cart-btn" href="{{route('frontend.userprofile')}}" title="Profile"><i class="fa fa-user" aria-hidden="true"></i></a>
+                                    <li class="relative">
+                                        <a class="cart-btn my-account" href="#!" title="Profile"><i class="fa fa-user" aria-hidden="true"></i></a>
+                                        <div class="dropDownBox hidden">
+                                            <div class="carrot"></div>
+                                            <ul class="border-bottom">
+                                                <li>
+                                                   <a href="{{route('frontend.cart')}}"> Cart ({{ count((array) session('cart')) }})</a>
+                                                </li>
+                                                <li><a href="{{route('frontend.userprofile')}}"> Profile</a></li>
+                                            <li><a href="{{route('frontend.quotation')}}">Quotation </a></li>
+                                            </ul>
+                                            <a href="{{ route('customer.logout') }}" class="btn btn-danger" title="Logout"  onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Logout</a>
+                                            <form id="frm-logout" action="{{ route('customer.logout') }}" method="POST" style="display: none;">
+                                                {{ csrf_field() }}
+                                            </form>
+                                        </div>
                                     </li>
-                                    <li>
-                                        <a href="{{ route('customer.logout') }}" class="fa fa-sign-out pull-right" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
-                                            Logout
-                                        </a>     
-                                        <form id="frm-logout" action="{{ route('customer.logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                      </li>
                                     @else
-                                    <li>
-                                        <a class="cart-btn" href="{{route('customer.login')}}" title="Login"><i class="fa fa-user" aria-hidden="true"></i></a>
+                                    <li class="relative">
+                                        <a class="cart-btn my-account" href="#!"><i class="fa fa-user" aria-hidden="true"></i></a>
+                                        <div class="dropDownBox hidden">
+                                            <div class="carrot"></div>
+                                            <ul class="border-bottom">
+                                                <li>
+                                                   <a href="cart.php"> Cart ({{ count((array) session('cart')) }})</a>
+                                                </li>
+                                            </ul>
+                                            <a href="{{route('customer.login')}}" class="btn btn-danger login-btn2" title="Login">Login</a>
+                                            <div class="text-center sign-up-cart">
+                                                New to NSC ? <a href="{{route('frontend.register')}}">Sign Up</a>
+                                            </div>
+                                        </div>
                                     </li>
                                     @endif
                                     <li class="header-btn">

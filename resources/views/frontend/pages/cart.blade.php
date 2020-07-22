@@ -30,7 +30,7 @@
                     <div class="cart-page-box-layout1">
                         @if(Session::has('cart'))
                         <div class="item-header">
-                            <h3 class="item-title">Your Cart <span>2 Items</span></h3>
+                            <h3 class="item-title">Your Cart <span>{{count((array) session('cart'))}} Items</span></h3>
                         </div>
                         <div class="product-list" id="quantity-holder">
                             @foreach(session('cart') as $id => $details)
@@ -57,8 +57,8 @@
                                                     <i class="fas fa-angle-down" aria-hidden="true"></i>
                                                 </button>
                                                 <div class="ud">
-                                                    <button class="btn btn-info update-cart" data-id="{{ $id }}">Update Quantity</button>
-                                                    <button class="btn btn-danger remove-from-cart" data-id="{{ $id }}">Delete Item</button>
+                                                    <button class="btn btn-info update-cart btn-lg ml-3" data-id="{{ $id }}">Update Quantity</button>
+                                                    <button class="btn btn-danger remove-from-cart btn-lg" data-id="{{ $id }}">Delete Item</button>
                                                 </div>
                                             </div>
                                         </div>

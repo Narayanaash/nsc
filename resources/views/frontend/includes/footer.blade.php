@@ -104,6 +104,7 @@
     <script src="{{asset('frontend/js/main.js')}}"></script>
     <script src="{{asset('frontend/js/zoom.js')}}"></script>
     <script src="{{asset('frontend/js/zoomscript.js')}}"></script>
+    <script src="{{asset('frontend/js/custom.js')}}"></script>
     <script>
     $("#search-form-ajax").submit(function(e) {
     e.preventDefault(); // avoid to execute the bharuwa form.

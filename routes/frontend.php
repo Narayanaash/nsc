@@ -75,6 +75,10 @@ Route::get('/user-profile', function () {
     return view('frontend.pages.userprofile');
 })->name('frontend.userprofile');
 
+Route::get('/quotation', function () {
+    return view('frontend.pages.quotation');
+})->name('frontend.quotation');
+
 
 
 

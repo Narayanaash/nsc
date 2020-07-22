@@ -29,6 +29,9 @@
     .cart-btn {
         border: 2px solid #2287e0;
     }
+    .dropDownBox {
+        right: 20px !important;
+    }
 }
 @media only screen and (min-width: 426px) and (max-width: 768px) {
     #header-menu {
