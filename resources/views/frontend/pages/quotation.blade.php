@@ -39,6 +39,8 @@
     <!-- Quotation Start Here -->
     <section class="inner-page-padding pt-0 pb-5 mb-2">
         <div class="container">
+            @if(isset($qoutation) && !empty($qoutation))
+            @foreach($qoutation as $qt)
             <div class="row">
                 <div class="col-lg-5 sidebar-break-md sidebar-widget-area">
                     <div class="widget widget-product-calculate pb-0 pt-5">
@@ -47,13 +49,13 @@
                         </div>
                         <div class="list-item">
                             <ul>
-                                <li>Name :<span>Narayan</span></li>
-                                <li>Email :<span>email@gmail.com</span></li>
-                                <li>phone :<span>9854098540</span></li>
-                                <li>Street Address :<span>xyz</span></li>
-                                <li>City :<span>Guwahati</span></li>
-                                <li>Zip: <span>781029</span></li>
-                                <li>Landmark: <span>abc</span></li>
+                                <li>Name :<span>{{$qt->address->name}}</span></li>
+                                <li>Email :<span>{{$qt->address->email}}</span></li>
+                                <li>phone :<span>{{$qt->address->phone}}</span></li>
+                                <li>Street Address :<span>{{$qt->address->street_address}}</span></li>
+                                <li>City :<span>{{$qt->address->city}}</span></li>
+                                <li>Zip: <span>{{$qt->address->zip}}</span></li>
+                                <li>Landmark: <span>{{$qt->address->landmark}}</span></li>
                             </ul>
                         </div>
                     </div>
@@ -64,22 +66,32 @@
                             <div class="row">
                                 <div class="col-md-7">
                                     <div class="q-group">
-                                        <strong>Quotation number: <span class="text-muted">KJDSHGF65465</span></strong>
+                                        <strong>Quotation number: <span class="text-muted">#{{$qt->id}}</span></strong>
                                     </div>
                                 </div>
                                 <div class="col-md-5">
                                     <div class="q-group">
-                                        <strong>Date of request: <span class="text-muted">20/02/20</span></strong>
+                                        <strong>Date of request: <span class="text-muted">{{ $qt->created_at->format('d/m/Y') }}</span></strong>
                                     </div>
                                 </div>
                                 <div class="col-md-7">
                                     <div class="q-group">
-                                        <strong>Status: <span class="text-muted">Delivered</span></strong>
+                                        <strong>Status: 
+                                            <span class="text-muted">
+                                                @if($qt->status == 1)
+                                                    Pending
+                                                @elseif($qt->status == 4)
+                                                    Rejected
+                                                @elseif($qt->status == 2)
+                                                    Approved
+                                                @endif
+                                            </span>
+                                        </strong>
                                     </div>
                                 </div>
                                 <div class="col-md-5">
                                     <div class="q-group">
-                                        <strong>Date of approval: <span class="text-muted">20/02/20</span></strong>
+                                        <strong>Date of approval: <span class="text-muted">{{ $qt->updated_at->format('d/m/Y') }}</span></strong>
                                     </div>
                                 </div>
                             </div>
@@ -99,14 +111,24 @@
                                       </tr>
                                     </thead>
                                     <tbody>
+                                    @if(isset($qt->qoutation_details) && !empty($qt->qoutation_details))
+                                    @php
+                                        $count = 1;
+                                    @endphp
+                                    @foreach($qt->qoutation_details as $pd)
                                       <tr>
-                                        <th scope="row">1</th>
-                                        <td>USB Pend Drive</td>
-                                        <td>4</td>
-                                        <td>R125</td>
-                                        <td>R500</td>
+                                        <th scope="row">{{$count}}</th>
+                                        <td>{{$pd->product_name}}</td>
+                                        <td>{{$pd->quantity}}</td>
+                                        <td>ZAR{{$pd->price}}</td>
+                                        <td>ZAR{{$pd->price * $pd->quantity}}</td>
                                       </tr>
-                                      <tr>
+                                      @php
+                                        $count++;
+                                      @endphp
+                                      @endforeach
+                                    @endif
+                                      {{-- <tr>
                                         <th scope="row">2</th>
                                         <td>USB Pend Drive</td>
                                         <td>4</td>
@@ -119,16 +141,22 @@
                                         <td>4</td>
                                         <td>R125</td>
                                         <td>R500</td>
-                                      </tr>
+                                      </tr> --}}
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                     <div class="text-right pr-2">
-                        <h3>Total: R500</h3>
+                        <h3>Total: <label class="label label-success">ZAR{{$qt->total_price}}</label></h3>
                       </div>
                </div>
+            </div>
+            <hr>
+            @endforeach
+            @endif
+            <div class="float-right">
+                {{ $qoutation->links() }}
             </div>
         </div>
     </section>

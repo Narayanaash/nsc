@@ -63,10 +63,14 @@ Route::namespace('Auth')->group(function () {
 
         Route::namespace('Qoutations')->group(function() {
             Route::get('/admin/home/qoutations/view', 'QoutationController@show')->name('qoutations.show');
+            Route::get('/admin/home/qoutations/accpeted', 'QoutationController@showAccepted')->name('qoutations.accpeted');
+            Route::get('/admin/home/qoutations/rejected', 'QoutationController@showRejected')->name('qoutations.rejected');
             Route::get('/admin/home/qoutations/delete/{id}', 'QoutationController@delete')->name('qoutations.delete');
             Route::get('/admin/home/qoutations/reject/{id}', 'QoutationController@reject')->name('qoutations.reject');
             // ajax route
             Route::get('/admin/home/qoutations/get-data', 'QoutationController@get')->name('qoutations.get_data');
+            Route::get('/admin/home/qoutations/get-accepted', 'QoutationController@getAccepted')->name('qoutations.accepted_data');
+            Route::get('/admin/home/qoutations/get-rejected', 'QoutationController@getRejected')->name('qoutations.rejected_data');
             Route::get('/admin/home/qoutations/view-data/{id}', 'QoutationController@view')->name('qoutations.view');
             Route::post('/admin/home/qoutations/price-update', 'QoutationController@priceUpdate')->name('qoutations.price_update');
             

@@ -14,12 +14,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Pending Qoutation</h1>
+            <h1>Rejected Qoutation</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Pending Qoutation</li>
+              <li class="breadcrumb-item active">Rejected Qoutation</li>
             </ol>
           </div>
         </div>
@@ -69,7 +69,7 @@
             processing: true,
             serverSide: true,
             iDisplayLength: 50,
-            ajax: "{{ route('qoutations.get_data') }}",
+            ajax: "{{ route('qoutations.rejected_data') }}",
             columns: [
                 {data: 'id', name: 'id',searchable: true},
                 {data: 'quantity', name: 'quantity',searchable: true},
@@ -78,8 +78,8 @@
                 {data: 'address.street_address', name: 'street_address',searchable: true},
                 {data: 'created_at', name: 'created_at',searchable: true},
                 {data: 'status', name: 'status', render:function(data, type, row){
-                  if (row.status == '1') {
-                    return "<button class='btn btn-warning'>Pending</button>"
+                  if (row.status == '4') {
+                    return "<button class='btn btn-danger'>Rejected</button>"
                   }                     
                 }},
                 {data: 'action', name: 'action', orderable: false, searchable: false},

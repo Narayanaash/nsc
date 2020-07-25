@@ -154,11 +154,34 @@
               @endif
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="{{route('qoutations.show')}}" class="nav-link {{ (request()->is('admin/home/quotations/view')) ? 'active' : '' }}">
-              <i class="nav-icon fas fa-eye"></i>
-              <p>View Quotations</p>
+          <li class="nav-item has-treeview {{ (request()->is('admin/home/quotations/view*')) ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link {{ (request()->is('admin/home/quotations/view*')) ? 'active' : '' }}">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                View Qoutation
+                <i class="right fas fa-angle-left"></i>
+              </p>
             </a>
+            <ul class="nav nav-treeview" style="display: {{ (request()->is('admin/home/quotations/view*')) ? 'block' : 'none' }};">
+              <li class="nav-item">
+              <a href="{{route('qoutations.show')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                  Pending Qoutation
+              </a>
+              </li>
+              <li class="nav-item">
+              <a href="{{route('qoutations.accpeted')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                  Accpeted Qoutation
+              </a>
+              </li>
+              <li class="nav-item">
+              <a href="{{route('qoutations.rejected')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                  Rejected Qoutation
+              </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item">
             <a href="{{route('orders.show')}}" class="nav-link {{ (request()->is('admin/home/orders/view')) ? 'active' : '' }}">

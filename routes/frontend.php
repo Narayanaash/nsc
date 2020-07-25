@@ -28,6 +28,9 @@ Route::delete('remove-from-cart', 'Customer\ProductController@remove');
 
 Route::get('/shopping-cart', 'Customer\ProductController@cart')->name('frontend.cart');
 
+// Qouattion
+Route::get('/quotation', 'Customer\ProductController@quotation')->name('frontend.quotation');
+
 Route::group(['middleware'=>'auth:customer','prefix'=>'customer','namespace'=>'Customer'],function(){
     Route::get('/home', 'HomeController@index')->name('frontend.home');
     Route::get('/checkout', 'ProductController@getCheckout')->name('product.checkout');
@@ -75,9 +78,7 @@ Route::get('/user-profile', function () {
     return view('frontend.pages.userprofile');
 })->name('frontend.userprofile');
 
-Route::get('/quotation', function () {
-    return view('frontend.pages.quotation');
-})->name('frontend.quotation');
+
 
 
 

@@ -16,8 +16,47 @@ class QoutationController extends Controller
         return view('admin/auth/customerorder.show');
     }
 
+    public function showAccepted()
+    {
+        return view('admin/auth/customerorder.accepted');
+    }
+   
+    public function showRejected()
+    {
+        return view('admin/auth/customerorder.rejected');
+    }
+
     public function get(){
-        $query = Qoutation::with('customer')->with('address')->orderBy('created_at', 'DESC');
+        $query = Qoutation::with('customer')->with('address')->where('status', 1)->orderBy('created_at', 'DESC');
+            return datatables()->of($query->get())
+            ->addIndexColumn()
+            ->addColumn('action', function($row){
+                $btn = '
+                <a href="'.route('qoutations.view', ['id' => encrypt($row->id)]).'" class="btn btn-info btn-sm" target="_blank"><i class="fa fa-eye"></i></a>
+                <a href="'.route('qoutations.delete', ['id' => encrypt($row->id)]).'" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>              
+                ';
+               
+             return $btn;
+            })
+            ->make(true);
+    }
+
+    public function getAccepted(){
+        $query = Qoutation::with('customer')->with('address')->where('status', 2)->orderBy('created_at', 'DESC');
+            return datatables()->of($query->get())
+            ->addIndexColumn()
+            ->addColumn('action', function($row){
+                $btn = '
+                <a href="'.route('qoutations.view', ['id' => encrypt($row->id)]).'" class="btn btn-info btn-sm" target="_blank"><i class="fa fa-eye"></i></a>
+                <a href="'.route('qoutations.delete', ['id' => encrypt($row->id)]).'" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>              
+                ';
+               
+             return $btn;
+            })
+            ->make(true);
+    }
+    public function getRejected(){
+        $query = Qoutation::with('customer')->with('address')->where('status', 4)->orderBy('created_at', 'DESC');
             return datatables()->of($query->get())
             ->addIndexColumn()
             ->addColumn('action', function($row){

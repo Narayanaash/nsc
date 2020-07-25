@@ -222,5 +222,10 @@ class ProductController extends Controller
                 ->get();
         return view('frontend.pages.queries', compact('checkout_data'));   
     }
+
+    public function quotation() {
+        $qoutation = Qoutation::with('qoutation_details')->with('address')->where('user_id', Auth::guard('customer')->user()->id)->paginate(5);
+        return view('frontend.pages.quotation', compact('qoutation'));
+    }
 }
 
